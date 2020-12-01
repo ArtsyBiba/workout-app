@@ -1,10 +1,23 @@
+import React from 'react';
+
 import './App.css';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Workout App</h1>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path='/'>
+          Signin
+        </Route>
+        <Route exact path='/signup'>
+          Signup
+        </Route>
+        <Route exact path='/dashboard'>
+          Dashboard
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
