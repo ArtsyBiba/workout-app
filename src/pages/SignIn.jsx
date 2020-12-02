@@ -14,6 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import useStyles from '../config/theme.signinup';
 import Copyright from '../components/Copyright';
 import { withFirebase } from '../components/Firebase';
+import PasswordForget from '../components/PasswordForget';
 
 function SignIn(props) {
     const classes = useStyles();
@@ -99,9 +100,7 @@ function SignIn(props) {
                         </Button>
                         <Grid container>
                             <Grid item xs>
-                                {/* <Link>
-                                    Forgot password?
-                                </Link> */}
+                                <PasswordForget />
                             </Grid>
                             <Grid item>
                                 <Link to='/signup'>
