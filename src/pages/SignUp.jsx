@@ -13,8 +13,9 @@ import Typography from '@material-ui/core/Typography';
 
 import useStyles from '../config/theme.signinup';
 import Copyright from '../components/Copyright';
+import { withFirebase } from '../components/Firebase';
 
-export default function SignIn() {
+function SignUp(props) {
     const classes = useStyles();
 
     const initialUser = {
@@ -34,7 +35,24 @@ export default function SignIn() {
     };
 
     const handleSubmit = (e) => {
-
+        props.firebase.auth.createUserWithEmailAndPassword(user.email, user.password)
+        // .then(authUser => {
+          // Create a user in the Firebase realtime database
+        //   return props.firebase
+        //     .user(authUser.user.uid)
+        //     .set({
+        //       username: user.name,
+        //       email: user.email,
+        //       activities: 'not set'
+        //     });
+        // })
+        .then(authUser => {
+          setUser(initialUser);
+          props.history.push('/dashboard');
+        })
+        .catch(error => {
+          setUser({...user, error: error.message})
+        });
     };
 
     const isValid = user.name === '' || user.email === '' || user.password === '';
@@ -49,7 +67,7 @@ export default function SignIn() {
                         <LockOutlinedIcon />
                     </Avatar>
                     <Typography component='h1' variant='h5'>
-                        Sign in
+                        Sign Up
                     </Typography>
                     <form className={classes.form} onSubmit={(e) => e.preventDefault()} noValidate>
                         
@@ -89,6 +107,9 @@ export default function SignIn() {
                             autoComplete='current-password'
                             onChange={handleChange}
                         />
+                        <Typography className={classes.error} color='secondary'>
+                            {user.error ? user.error : ''}
+                        </Typography>
                         <Button
                             type='submit'
                             fullWidth
@@ -98,14 +119,9 @@ export default function SignIn() {
                             onClick={handleSubmit}
                             disabled={isValid}
                         >
-                            Sign In
+                            Sign Up
                         </Button>
                         <Grid container>
-                            <Grid item xs>
-                                <Link>
-                                    Forgot password?
-                                </Link>
-                            </Grid>
                             <Grid item>
                                 <Link to='/' >
                                     {"Already have an account? Sign In"}
@@ -121,3 +137,5 @@ export default function SignIn() {
         </Grid>
     );
 }
+
+export default withRouter(withFirebase(SignUp));
