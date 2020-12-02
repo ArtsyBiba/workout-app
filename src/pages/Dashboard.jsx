@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { withRouter, Switch, Route, useRouteMatch } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import clsx from 'clsx';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -16,7 +16,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import useStyles from '../config/theme.dashboard';
 import Copyright from '../components/Copyright';
 import Sidebar from '../components/Sidebar';
-import { withFirebase } from '../components/Firebase';
+import Calendar from '../components/Calendar';
 import { AuthUserContext, withAuthentication } from '../components/Session';
 
 function Dashboard(props) {
@@ -71,10 +71,10 @@ function Dashboard(props) {
                 <main className={classes.content, !open ? classes.contentClosed : classes.appBarShift }>
                 <div className={classes.appBarSpacer} />
                 <Container maxWidth='xl' className={classes.container}>
-                    {/* <Calendar 
+                    <Calendar 
                         firebase={props.firebase}
                         authUser={authUser}
-                    /> */}
+                    />
                     <Box pt={4}>
                         <Copyright />
                     </Box>
