@@ -13,8 +13,9 @@ import Typography from '@material-ui/core/Typography';
 
 import useStyles from '../config/theme.signinup';
 import Copyright from '../components/Copyright';
+import { withFirebase } from '../components/Firebase';
 
-export default function SignIn() {
+function SignIn(props) {
     const classes = useStyles();
 
     const initialUser = {
@@ -33,7 +34,14 @@ export default function SignIn() {
     };
 
     const handleSubmit = (e) => {
-
+        props.firebase.doSignInWithEmailAndPassword(user.email, user.password)
+        .then(authUser => {
+          setUser({initialUser})
+          props.history.push('/dashboard');
+        })
+        .catch(error => {
+          setUser({...user, error: error.message})
+        });
     };
 
     const isValid = user.email === '' || user.password === '';
@@ -75,6 +83,9 @@ export default function SignIn() {
                             autoComplete='current-password'
                             onChange={handleChange}
                         />
+                        <Typography className={classes.error} color='secondary'>
+                            {user.error ? user.error : ''}
+                        </Typography>
                         <Button
                             type='submit'
                             fullWidth
@@ -88,9 +99,9 @@ export default function SignIn() {
                         </Button>
                         <Grid container>
                             <Grid item xs>
-                                <Link>
+                                {/* <Link>
                                     Forgot password?
-                                </Link>
+                                </Link> */}
                             </Grid>
                             <Grid item>
                                 <Link to='/signup'>
@@ -107,3 +118,5 @@ export default function SignIn() {
         </Grid>
     );
 }
+
+export default withRouter(withFirebase(SignIn));
