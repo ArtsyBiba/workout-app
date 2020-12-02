@@ -19,6 +19,7 @@ export default function SignIn() {
 
     const initialUser = {
         id: null, 
+        name: '',
         email: '', 
         password: '', 
         error: null, 
@@ -36,7 +37,7 @@ export default function SignIn() {
 
     };
 
-    const isValid = user.email === '' || user.password === '';
+    const isValid = user.name === '' || user.email === '' || user.password === '';
 
     return (
         <Grid container component='main' className={classes.root}>
@@ -51,6 +52,19 @@ export default function SignIn() {
                         Sign in
                     </Typography>
                     <form className={classes.form} onSubmit={(e) => e.preventDefault()} noValidate>
+                        
+                        <TextField
+                            variant='outlined'
+                            margin='normal'
+                            required
+                            fullWidth
+                            id='name'
+                            label='Name'
+                            name='name'
+                            autoFocus
+                            value={user.name}
+                            onChange={handleChange}
+                        />
                         <TextField
                             variant='outlined'
                             margin='normal'
@@ -93,8 +107,8 @@ export default function SignIn() {
                                 </Link>
                             </Grid>
                             <Grid item>
-                                <Link to='/signup'>
-                                    {"Don't have an account? Sign Up"}
+                                <Link to='/' >
+                                    {"Already have an account? Sign In"}
                                 </Link>
                             </Grid>
                         </Grid>

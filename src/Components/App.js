@@ -5,6 +5,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import theme from '../config/theme.config';
 
 import SignIn from '../pages/SignIn'; 
+import SignUp from '../pages/SignUp';
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
             <SignIn />
           </Route>
           <Route exact path='/signup'>
-            Signup
+            <SignUp />
           </Route>
           <Route exact path='/dashboard'>
             Dashboard
