@@ -34,10 +34,10 @@ function SignUp(props) {
         setUser({ ...user, [name]: value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = e => {
         props.firebase.auth.createUserWithEmailAndPassword(user.email, user.password)
         .then(authUser => {
-        //   Create a user in the Firebase realtime database
+          // Create a user in the Firebase realtime database
           return props.firebase
             .user(authUser.user.uid)
             .set({
@@ -53,7 +53,7 @@ function SignUp(props) {
         .catch(error => {
           setUser({...user, error: error.message})
         });
-    };
+      }
 
     const isValid = user.name === '' || user.email === '' || user.password === '';
 
