@@ -36,16 +36,16 @@ function SignUp(props) {
 
     const handleSubmit = (e) => {
         props.firebase.auth.createUserWithEmailAndPassword(user.email, user.password)
-        // .then(authUser => {
-          // Create a user in the Firebase realtime database
-        //   return props.firebase
-        //     .user(authUser.user.uid)
-        //     .set({
-        //       username: user.name,
-        //       email: user.email,
-        //       activities: 'not set'
-        //     });
-        // })
+        .then(authUser => {
+        //   Create a user in the Firebase realtime database
+          return props.firebase
+            .user(authUser.user.uid)
+            .set({
+              username: user.name,
+              email: user.email,
+              activities: 'not set'
+            });
+        })
         .then(authUser => {
           setUser(initialUser);
           props.history.push('/dashboard');
