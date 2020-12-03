@@ -14,7 +14,7 @@ const CalendarHead = props => {
     const {allMonths, setMonth, toggleMonthSelect, currentMonth, currentYear, showMonthTable} = props;
 
     let months = [];
-    
+
     allMonths.map(month => (
         months.push(
             <TableCell 
@@ -82,4 +82,4 @@ const CalendarHead = props => {
     )
 };
 
-export default CalendarHead;
+export default CalendarHead; 

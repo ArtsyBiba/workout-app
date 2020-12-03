@@ -43,7 +43,6 @@ function SignUp(props) {
             .set({
               username: user.name,
               email: user.email,
-              activities: 'not set'
             });
         })
         .then(authUser => {
