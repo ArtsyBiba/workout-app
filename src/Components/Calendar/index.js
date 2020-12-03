@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import moment from 'moment';
 
 import Grid from '@material-ui/core/Grid';
@@ -7,8 +7,12 @@ import CalendarBody from './calendar-body';
 import CalendarHead from './calendar-head';
 
 function Calendar(props) {
-
     const {firebase, authUser} = props;
+
+    let defaultSelectedDay = {
+        day: moment().format('D'),
+        month: moment().month()
+    };
 
     /* HOOKS */
     const [dateObject, setdateObject] = useState(moment());
@@ -17,34 +21,34 @@ function Calendar(props) {
 
     /* CALENDAR HEAD */
     const allMonths = moment.months();
-    const currentMonth = () => dateObject.format("MMMM");
-    const currentYear = () => dateObject.format("YYYY");
+    const currentMonth = () => dateObject.format('MMMM');
+    const currentYear = () => dateObject.format('YYYY');
 
     const setMonth = month => {
         let monthNo = allMonths.indexOf(month);
         let newDateObject = Object.assign({}, dateObject);
-        newDateObject = moment(dateObject).set("month", monthNo);
+        newDateObject = moment(dateObject).set('month', monthNo);
         setdateObject(newDateObject);
         setShowMonthTable(false);
-    }
+    };
 
     const toggleMonthSelect = () => setShowMonthTable(!showMonthTable);
 
     /*** CALENDAR BODY ***/
-const setSelectedDay = day => {
-    setSelected({
-            day,
-            month: currentMonthNum()
-    });
-     // Later refresh data
-};
+    const setSelectedDay = day => {
+        setSelected({
+                day,
+                month: currentMonthNum()
+        });
+        // Later refresh '
+    };
 
-const currentMonthNum = () => dateObject.month();
-const daysInMonth = () => dateObject.daysInMonth();
-const currentDay = () => dateObject.format("D");
-const actualMonth = () => moment().format("MMMM");
+    const currentMonthNum = () => dateObject.month();
+    const daysInMonth = () => dateObject.daysInMonth();
+    const currentDay = () => dateObject.format('D');
+    const actualMonth = () => moment().format('MMMM');
 
-const firstDayOfMonth = () => moment(dateObject).startOf("month").format("d");
+    const firstDayOfMonth = () => moment(dateObject).startOf('month').format('d');
 
     return (
         <Grid container spacing={3}>
@@ -58,6 +62,16 @@ const firstDayOfMonth = () => moment(dateObject).startOf("month").format("d");
                         toggleMonthSelect={toggleMonthSelect}
                     />
                     <CalendarBody 
+                        firstDayOfMonth={firstDayOfMonth}
+                        daysInMonth={daysInMonth}
+                        currentDay={currentDay}
+                        currentMonth={currentMonth}
+                        currentMonthNum={currentMonthNum}
+                        actualMonth={actualMonth}
+                        setSelectedDay={setSelectedDay}
+                        selectedDay={selectedDay}
+                        weekdays={moment.weekdays()} 
+                        // activeDays={activeDays}
                     />
             </Grid>
         </Grid>

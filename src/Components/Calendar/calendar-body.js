@@ -1,6 +1,6 @@
 import React from 'react';
 import './calendar.css';
-import nextId from "react-id-generator";
+import nextId from 'react-id-generator';
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -11,13 +11,12 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 const CalendarBody = props => {
-
     const { firstDayOfMonth, daysInMonth, currentDay, currentMonth, currentMonthNum, selectedDay, activeDays, setSelectedDay, actualMonth, weekdays } = props;
 
     let blanks = [];
     for (let i = 0; i < firstDayOfMonth(); i++) {
         blanks.push(
-            <TableCell key={nextId()}>{""}</TableCell>
+            <TableCell key={nextId()}>{''}</TableCell>
         )
     }
 
@@ -26,10 +25,10 @@ const CalendarBody = props => {
         let currDay, selectDay, activeDay;
 
         // Check if day is today
-        if (currentDay() == d && currentMonth() == actualMonth()) currDay = "today";
+        if (currentDay() == d && currentMonth() == actualMonth()) currDay = 'today';
 
         // Check if day is selected day
-        if (selectedDay.day == d && currentMonthNum() == selectedDay.month ) selectDay = "selected-day";
+        if (selectedDay.day == d && currentMonthNum() == selectedDay.month ) selectDay = 'selected-day';
 
         monthDays.push(
             <TableCell 
@@ -61,7 +60,7 @@ const CalendarBody = props => {
 
     return (
         <TableContainer component={Paper}>
-            <Table className="calendar">
+            <Table className='calendar'>
                 <TableHead>
                     <TableRow>
                         {
