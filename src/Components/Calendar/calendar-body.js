@@ -11,7 +11,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 const CalendarBody = props => {
-    const { firstDayOfMonth, daysInMonth, currentDay, currentMonth, currentMonthNum, selectedDay, activeDays, setSelectedDay, actualMonth, weekdays } = props;
+    const { firstDayOfMonth, daysInMonth, currentDay, currentMonth, currentMonthNum, selectedDay, setSelectedDay, actualMonth, weekdays } = props;
 
     let blanks = [];
     for (let i = 0; i < firstDayOfMonth(); i++) {
@@ -25,10 +25,10 @@ const CalendarBody = props => {
         let currDay, selectDay, activeDay;
 
         // Check if day is today
-        if (currentDay() == d && currentMonth() == actualMonth()) currDay = 'today';
+        if (currentDay() === d && currentMonth() === actualMonth()) currDay = 'today';
 
         // Check if day is selected day
-        if (selectedDay.day == d && currentMonthNum() == selectedDay.month ) selectDay = 'selected-day';
+        if (selectedDay.day === d && currentMonthNum() === selectedDay.month ) selectDay = 'selected-day';
 
         monthDays.push(
             <TableCell 

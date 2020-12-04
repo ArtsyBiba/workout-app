@@ -27,6 +27,9 @@ function Dashboard(props) {
     const handleDrawerOpen = () => setOpen(true);
     const handleDrawerClose = () => setOpen(false);
   
+    const database = props.firebase;
+    console.log(database)
+
     const signOut = () => {
       props.firebase.auth.signOut()
       props.history.push('/');
@@ -40,11 +43,11 @@ function Dashboard(props) {
                 <AppBar position='absolute' className={clsx(classes.appBar, open && classes.appBarShift)}>
                     <Toolbar className={classes.toolbar}>
                         <IconButton
-                        edge='start'
-                        color='inherit'
-                        aria-label='open drawer'
-                        onClick={handleDrawerOpen}
-                        className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
+                            edge='start'
+                            color='inherit'
+                            aria-label='open drawer'
+                            onClick={handleDrawerOpen}
+                            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
                         >
                             <MenuIcon />
                         </IconButton>
@@ -52,12 +55,12 @@ function Dashboard(props) {
                                 Dashboard
                             </Typography>
                         <IconButton color='inherit'>
-                        <Badge badgeContent={4} color='secondary'>
-                            <Typography component='p' style={{paddingRight: '15px'}}>
-                                username
-                            </Typography>
-                            <NotificationsIcon />
-                        </Badge>
+                            <Badge badgeContent={0} color='secondary'>
+                                <Typography component='p' style={{paddingRight: '15px'}}>
+                                    username
+                                </Typography>
+                                <NotificationsIcon />
+                            </Badge>
                         </IconButton>
                     </Toolbar>
                 </AppBar>
@@ -69,16 +72,16 @@ function Dashboard(props) {
                 />
 
                 <main className={classes.content, !open ? classes.contentClosed : classes.appBarShift }>
-                <div className={classes.appBarSpacer} />
-                <Container maxWidth='xl' className={classes.container}>
-                    <Calendar 
-                        firebase={props.firebase}
-                        authUser={authUser}
-                    />
-                    <Box pt={4}>
-                        <Copyright />
-                    </Box>
-                </Container>
+                    <div className={classes.appBarSpacer} />
+                    <Container maxWidth='xl' className={classes.container}>
+                        <Calendar 
+                            firebase={props.firebase}
+                            authUser={authUser}
+                        />
+                        <Box pt={4}>
+                            <Copyright />
+                        </Box>
+                    </Container>
                 </main>
                 
             </div>
