@@ -16,6 +16,11 @@ export default function Calendar({date, setDate}) {
         <div className='calendar'>
             <Header date={date} setDate={setDate} />
             <div className='body'>
+                <div className='day-names'>
+                    {['su', 'mo', 'tu', 'we', 'th', 'fr', 'sa'].map((day, index) => (
+                        <div key={index} className='week'>{day}</div>
+                    ))}
+                </div>
                 {calendar.map((week, index) => (
                     <div key={index}>
                         {week.map((day, index) => (
