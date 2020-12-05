@@ -17,18 +17,21 @@ import useStyles from '../config/theme.dashboard';
 import Copyright from '../components/Copyright';
 import Sidebar from '../components/Sidebar';
 import Calendar from '../components/Calendar';
+import User from '../components/User';
 import { AuthUserContext, withAuthentication } from '../components/Session';
 
 function Dashboard(props) {
     const classes = useStyles();
+
+    const {firebase} = props;
 
     const [open, setOpen] = useState(true);
   
     const handleDrawerOpen = () => setOpen(true);
     const handleDrawerClose = () => setOpen(false);
   
-    const database = props.firebase;
-    console.log(database)
+    // const database = firebase.db;
+    // console.log(database)
 
     const signOut = () => {
       props.firebase.auth.signOut()
@@ -56,10 +59,7 @@ function Dashboard(props) {
                             </Typography>
                         <IconButton color='inherit'>
                             <Badge badgeContent={0} color='secondary'>
-                                <Typography component='p' style={{paddingRight: '15px'}}>
-                                    username
-                                </Typography>
-                                <NotificationsIcon />
+                                <User firebase={firebase} authUser={authUser} />
                             </Badge>
                         </IconButton>
                     </Toolbar>
