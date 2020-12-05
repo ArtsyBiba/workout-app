@@ -1,31 +1,31 @@
 import './styles.css';
 
-export default function Header({value, setValue}) {
+export default function Header({date, setDate}) {
     function currentMonthName() {
-        return value.format('MMMM');
+        return date.format('MMMM');
     };
 
     function currentYear() {
-        return value.format('YYYY');
+        return date.format('YYYY');
     };
 
     function previousMonth() {
-        return value.clone().subtract(1, 'month');
+        return date.clone().subtract(1, 'month');
     };
 
     function nextMonth() {
-        return value.clone().add(1, 'month');
+        return date.clone().add(1, 'month');
     };
     
     return (
         <div className='header'>
-            <div className='previous' onClick={() => setValue(previousMonth())}>
+            <div className='previous' onClick={() => setDate(previousMonth())}>
                 {String.fromCharCode(171)}
             </div>
             <div className='current'>
                 {currentMonthName()} {currentYear()}
             </div>
-            <div className='next' onClick={() => setValue(nextMonth())}>
+            <div className='next' onClick={() => setDate(nextMonth())}>
                 {String.fromCharCode(187)}
             </div>
         </div>

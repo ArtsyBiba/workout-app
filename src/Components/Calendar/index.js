@@ -1,31 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import moment from 'moment';
 
 import './styles.css';
 import buildCalendar from './build';
 import dayStyles from './styles';
 import Header from './header';
 
-export default function Calendar() {
+export default function Calendar({date, setDate}) {
     const [calendar, setCalendar] = useState([]);
-    const [value, setValue] = useState(moment());
 
     useEffect(() => {
-        setCalendar(buildCalendar(value));
-    }, [value]);
+        setCalendar(buildCalendar(date));
+    }, [date]);
 
     return (
         <div className='calendar'>
-            <Header value={value} setValue={setValue} />
+            <Header date={date} setDate={setDate} />
             <div className='body'>
-                {calendar.map((week) => (
-                    <div>
-                        {week.map((day) => (
+                {calendar.map((week, index) => (
+                    <div key={index}>
+                        {week.map((day, index) => (
                             <div 
+                                key={index}    
                                 className='day'
-                                onClick={() => setValue(day)}
+                                onClick={() => setDate(day)}
                             >
-                                <div className={dayStyles(day, value)}>
+                                <div className={dayStyles(day, date)}>
                                     {day.format('D').toString()}
                                 </div>
                             </div>

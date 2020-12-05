@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
+import moment from 'moment';
 
 import clsx from 'clsx';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -25,6 +26,7 @@ function Dashboard(props) {
     const {firebase} = props;
 
     const [open, setOpen] = useState(true);
+    const [date, setDate] = useState(moment());
   
     const handleDrawerOpen = () => setOpen(true);
     const handleDrawerClose = () => setOpen(false);
@@ -70,7 +72,12 @@ function Dashboard(props) {
                 <main className={classes.content, !open ? classes.contentClosed : classes.appBarShift }>
                     <div className={classes.appBarSpacer} />
                     <Container maxWidth='xl' className={classes.container}>
-                        <Calendar firebase={firebase} authUser={authUser} />
+                        <Calendar 
+                            firebase={firebase} 
+                            authUser={authUser}
+                            date={date}
+                            setDate={setDate} 
+                        />
                         <Box pt={4}>
                             <Copyright />
                         </Box>
