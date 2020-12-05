@@ -10,7 +10,6 @@ const User = (props) => {
 
     useEffect(() => {
         let ref = firebase.db.ref().child(`users/${authUser.uid}/username`);
-
         ref.once('value', snapshot => {
             let data = snapshot.val();
             setUsername(data);
