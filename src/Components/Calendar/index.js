@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import moment from 'moment';
 
 import Grid from '@material-ui/core/Grid';
+import './calendar.css';
 
 import CalendarBody from './calendar-body';
 import CalendarHead from './calendar-head';
@@ -48,8 +49,13 @@ function Calendar(props) {
     const firstDayOfMonth = () => moment(dateObject).startOf('month').format('d');
 
     return (
-        <Grid container spacing={3}>
-            <Grid item xs={12} md={8} lg={9}>
+        <Grid 
+            container 
+            spacing={3}   
+            justify='center'
+            alignItems='center' 
+        >
+            <Grid item >
                     <CalendarHead
                         allMonths={allMonths}
                         currentMonth={currentMonth}

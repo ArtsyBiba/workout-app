@@ -28,9 +28,6 @@ function Dashboard(props) {
   
     const handleDrawerOpen = () => setOpen(true);
     const handleDrawerClose = () => setOpen(false);
-  
-    // const database = firebase.db;
-    // console.log(database)
 
     const signOut = () => {
       props.firebase.auth.signOut()
@@ -73,10 +70,7 @@ function Dashboard(props) {
                 <main className={classes.content, !open ? classes.contentClosed : classes.appBarShift }>
                     <div className={classes.appBarSpacer} />
                     <Container maxWidth='xl' className={classes.container}>
-                        <Calendar 
-                            firebase={props.firebase}
-                            authUser={authUser}
-                        />
+                        <Calendar firebase={firebase} authUser={authUser} />
                         <Box pt={4}>
                             <Copyright />
                         </Box>
