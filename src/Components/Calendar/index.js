@@ -4,6 +4,7 @@ import moment from 'moment';
 import './styles.css';
 import buildCalendar from './build';
 import dayStyles from './styles';
+import Header from './header';
 
 export default function Calendar() {
     const [calendar, setCalendar] = useState([]);
@@ -15,20 +16,23 @@ export default function Calendar() {
 
     return (
         <div className='calendar'>
-            {calendar.map((week) => (
-                <div>
-                    {week.map((day) => (
-                        <div 
-                            className='day'
-                            onClick={() => setValue(day)}
-                        >
-                            <div className={dayStyles(day, value)}>
-                                {day.format('D').toString()}
+            <Header value={value} setValue={setValue} />
+            <div className='body'>
+                {calendar.map((week) => (
+                    <div>
+                        {week.map((day) => (
+                            <div 
+                                className='day'
+                                onClick={() => setValue(day)}
+                            >
+                                <div className={dayStyles(day, value)}>
+                                    {day.format('D').toString()}
+                                </div>
                             </div>
-                        </div>
-                    ))}
-                </div>
-            ))}
+                        ))}
+                    </div>
+                ))}
+            </div>
         </div>
     )
 };
