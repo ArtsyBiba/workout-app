@@ -25,7 +25,7 @@ function Dashboard(props) {
 
     const {firebase} = props;
 
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
     const [date, setDate] = useState(moment());
   
     const handleDrawerOpen = () => setOpen(true);
@@ -34,7 +34,7 @@ function Dashboard(props) {
     const signOut = () => {
       props.firebase.auth.signOut()
       props.history.push('/');
-    }
+    };
 
     return (
         <AuthUserContext.Consumer>

@@ -17,7 +17,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
 import useStyles from '../config/theme.dashboard';
 
-function Sidebar(props) {
+function Sidebar({ signOut, open, handleDrawerClose }) {
     let match = useRouteMatch();
 
     const classes = useStyles();
@@ -26,12 +26,12 @@ function Sidebar(props) {
         <Drawer
             variant='permanent'
             classes={{
-                paper: clsx(classes.drawerPaper, !props.open && classes.drawerPaperClose),
+                paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
             }}
-            open={props.open}
+            open={open}
         >
             <div className={classes.toolbarIcon}>
-                <IconButton onClick={props.handleDrawerClose}>
+                <IconButton onClick={handleDrawerClose}>
                 <ChevronLeftIcon />
                 </IconButton>
             </div>
@@ -59,7 +59,7 @@ function Sidebar(props) {
                             <ListItemText primary='Settings' />
                         </ListItem>
                     </Link>
-                    <ListItem button onClick={() => props.signOut()}>
+                    <ListItem button onClick={() => signOut()}>
                         <ListItemIcon>
                             <ExitToAppIcon />
                         </ListItemIcon>
