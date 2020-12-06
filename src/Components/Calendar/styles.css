@@ -2,6 +2,7 @@
 	box-sizing: border-box;
 	font-size: 1rem;
 	max-width: 400px;
+	height: 300px;
 }
 
 .calendar .header {
@@ -22,10 +23,6 @@
 	align-items: center;
 }
 
-.calendar .body {
-	border: 1px solid light-blue;
-}
-
 .calendar .header .previous {
 	flex: 1;
 	text-align: left;
@@ -36,6 +33,11 @@
 	flex: 1;
 	text-align: right;
 	margin-right: 1rem;
+}
+
+.calendar .body {
+	height: 265px;
+	background-color: white;
 }
 
 .calendar .week {

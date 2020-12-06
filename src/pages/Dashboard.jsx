@@ -85,7 +85,9 @@ function Dashboard(props) {
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <WorkoutData
-
+                                    firebase={firebase} 
+                                    authUser={authUser}
+                                    date={date}
                                 />
                             </Grid>
                             <Grid item xs={12}>
