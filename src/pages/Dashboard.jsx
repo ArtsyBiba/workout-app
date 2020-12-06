@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 import MenuIcon from '@material-ui/icons/Menu';
 
 import useStyles from '../config/theme.dashboard';
@@ -18,6 +19,7 @@ import Copyright from '../components/Copyright';
 import Sidebar from '../components/Sidebar';
 import Calendar from '../components/Calendar';
 import User from '../components/User';
+import WorkoutData from '../components/WorkoutData';
 import { AuthUserContext, withAuthentication } from '../components/Session';
 
 function Dashboard(props) {
@@ -72,18 +74,28 @@ function Dashboard(props) {
                 <main className={classes.content, !open ? classes.contentClosed : classes.appBarShift }>
                     <div className={classes.appBarSpacer} />
                     <Container maxWidth='xl' className={classes.container}>
-                        <Calendar 
-                            firebase={firebase} 
-                            authUser={authUser}
-                            date={date}
-                            setDate={setDate} 
-                        />
-                        <Box pt={4}>
-                            <Copyright />
-                        </Box>
+                        <Grid container spacing={3}>
+                            <Grid item xs={12} sm={6}>
+                                <Calendar 
+                                    firebase={firebase} 
+                                    authUser={authUser}
+                                    date={date}
+                                    setDate={setDate} 
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <WorkoutData
+
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Box pt={4}>
+                                    <Copyright />
+                                </Box>
+                            </Grid>
+                        </Grid>
                     </Container>
                 </main>
-                
             </div>
             ) : (<p>Not authorized.</p>)
         }
