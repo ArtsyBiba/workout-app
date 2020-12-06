@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import './styles.css';
+import UserInput from './userInput';
 
 export default function WorkoutData(props) {
     const {firebase, authUser, date} = props;
@@ -28,7 +29,9 @@ export default function WorkoutData(props) {
                 <div className='selected-date'>
                     {createDate()}
                 </div>
-                Body
+                <UserInput name='Activity Type' />
+                <UserInput name='Duration' />
+                <UserInput name='Intensity' />
             </div>
         </div>
     )
