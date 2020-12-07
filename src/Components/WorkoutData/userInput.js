@@ -32,18 +32,21 @@ export default function UserInput(props) {
             <div className='user-input'>
                 <div className='input-type'>Activity Type</div>
                 <input 
+                    value={workout.activity}
                     onChange={(e) => setWorkout({...workout, activity: e.target.value})} 
                 />
             </div>
             <div className='user-input'>
                 <div className='input-type'>Duration</div>
                 <input 
+                    value={workout.duration}
                     onChange={(e) => setWorkout({...workout, duration: e.target.value})} 
                 />
             </div>
             <div className='user-input'>
                 <div className='input-type'>Intensity</div>
                 <input 
+                    value={workout.intensity}
                     onChange={(e) => setWorkout({...workout, intensity: e.target.value})} 
                 />
             </div>
