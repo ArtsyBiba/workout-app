@@ -31,3 +31,15 @@
 	display: flex;
 	justify-content: space-between;
 }
+
+.workout-data .user-input-wrapper {
+	display: flex;
+	flex-direction: column;
+}
+
+.workout-data .user-input-wrapper .submit-button {
+	margin: auto;
+	margin-top: 1em;
+	max-width: 60px;
+	justify-self: center;
+}

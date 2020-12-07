@@ -5,16 +5,6 @@ import UserInput from './userInput';
 
 export default function WorkoutData(props) {
     const {firebase, authUser, date} = props;
-    
-    // const [username, setUsername] = useState('')
-
-    // useEffect(() => {
-    //     let ref = firebase.db.ref().child(`users/${authUser.uid}/username`);
-    //     ref.once('value', snapshot => {
-    //         let data = snapshot.val();
-    //         setUsername(data);
-    //     });
-    // }, [firebase, authUser])
 
     function createDate() {
         return date.format('MM/DD/YYYY');
@@ -29,9 +19,7 @@ export default function WorkoutData(props) {
                 <div className='selected-date'>
                     {createDate()}
                 </div>
-                <UserInput name='Activity Type' />
-                <UserInput name='Duration' />
-                <UserInput name='Intensity' />
+                <UserInput />
             </div>
         </div>
     )
