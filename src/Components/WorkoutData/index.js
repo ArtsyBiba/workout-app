@@ -17,7 +17,11 @@ export default function WorkoutData(props) {
                 <div className='selected-date'>
                     {selectedDate}
                 </div>
-                <UserInput selectedDate={selectedDate} />
+                <UserInput 
+                    selectedDate={selectedDate} 
+                    firebase={firebase}
+                    authUser={authUser}
+                />
             </div>
         </div>
     )

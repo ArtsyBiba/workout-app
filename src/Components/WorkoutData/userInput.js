@@ -4,16 +4,27 @@ import './styles.css';
 
 export default function UserInput(props) {
     const {firebase, authUser, selectedDate} = props;
+    const uid = authUser.uid;
     
-    const [workout, setWorkout] = useState({
+    const defaultWorkout = {
         activity: '',
         duration: '',
         intensity: '',
         date: selectedDate,
-    });
+    };
 
-    const handleClick = () => {
-        
+    const [workout, setWorkout] = useState(defaultWorkout);
+
+    const handleSubmit = () => {
+        if (authUser) {
+            firebase.addWorkout(uid, workout);
+            setWorkout(defaultWorkout);
+            // setOpenSnackbar(true);
+            // setSnackbarMsg('Added activity');
+            // setTimeout(() => {
+            //     setOpenSnackbar(false)
+            // }, 3000)
+        }
     };
     
     return (
@@ -36,7 +47,7 @@ export default function UserInput(props) {
                     onChange={(e) => setWorkout({...workout, intensity: e.target.value})} 
                 />
             </div>
-            <button className='submit-button' onClick={handleClick}>Add</button>
+            <button className='submit-button' onClick={handleSubmit}>Add</button>
         </div>
     )
 };
