@@ -15,6 +15,9 @@
 .workout-data .body {
 	background-color: white;
 	height: 265px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
 }
 
 .workout-data .selected-date {
@@ -26,20 +29,21 @@
 	margin-bottom: 1em;
 }
 
-.workout-data .user-input {
+.workout-data .user-input-wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 200px;
+}
+
+.workout-data .user-input-wrapper .user-input {
 	margin: 0.5em;
 	display: flex;
 	justify-content: space-between;
 }
 
-.workout-data .user-input-wrapper {
-	display: flex;
-	flex-direction: column;
-}
-
 .workout-data .user-input-wrapper .submit-button {
 	margin: auto;
-	margin-top: 1em;
 	max-width: 60px;
 	justify-self: center;
 }

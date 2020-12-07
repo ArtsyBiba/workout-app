@@ -9,6 +9,13 @@ function beforeThisMonth(day) {
     return day.isBefore(firstDay, 'day');
 };
 
+function afterThisMonth(day) {
+    var date = new Date();
+    var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+    
+    return day.isAfter(lastDay, 'day');
+};
+
 function isToday(day) {
     return day.isSame(new Date(), 'day');
 };
@@ -16,6 +23,7 @@ function isToday(day) {
 export default function dayStyles(day, value) {
     if (isSelected(day, value)) return 'selected';
     if (beforeThisMonth(day)) return 'before';
+    if (afterThisMonth(day)) return 'before';
     if (isToday(day)) return 'today';
     return '';
 };
