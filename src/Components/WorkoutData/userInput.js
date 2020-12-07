@@ -3,10 +3,13 @@ import React, { useState } from 'react';
 import './styles.css';
 
 export default function UserInput(props) {
+    const {firebase, authUser, selectedDate} = props;
+    
     const [workout, setWorkout] = useState({
         activity: '',
         duration: '',
         intensity: '',
+        date: selectedDate,
     });
 
     const handleClick = () => {
