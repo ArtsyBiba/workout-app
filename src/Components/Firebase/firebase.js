@@ -41,6 +41,11 @@ var config = {
         const ref = this.db.ref().child(`users/${uid}/workouts`);
         ref.push(workout);
     };
+
+    updateWorkout = (uid, workout, workoutKey) => {
+        const ref = this.db.ref().child(`users/${uid}/workouts/${workoutKey}`);
+        ref.update(workout);
+    };
 }
 
 export default Firebase
