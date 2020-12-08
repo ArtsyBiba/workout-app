@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './styles.css';
 
 export default function UserInput(props) {
-    const {firebase, authUser, selectedDate} = props;
+    const {firebase, authUser, selectedDate, savedWorkout} = props;
 
     const defaultWorkout = {
         activity: '',
@@ -40,7 +40,7 @@ export default function UserInput(props) {
         <div className='user-input-wrapper'>
             <div className='user-input'>
                 <div className='input-type'>Activity Type</div>
-                <div className='existing-data'></div>
+                {savedWorkout && <div className='saved-workout'>{savedWorkout.activity}</div>}
                 <input 
                     value={newWorkout.activity}
                     onChange={(e) => setNewWorkout({...newWorkout, activity: e.target.value})} 
@@ -48,6 +48,7 @@ export default function UserInput(props) {
             </div>
             <div className='user-input'>
                 <div className='input-type'>Duration</div>
+                {savedWorkout && <div className='saved-workout'>{savedWorkout.duration}</div>}
                 <input 
                     value={newWorkout.duration}
                     onChange={(e) => setNewWorkout({...newWorkout, duration: e.target.value})} 
@@ -55,6 +56,7 @@ export default function UserInput(props) {
             </div>
             <div className='user-input'>
                 <div className='input-type'>Intensity</div>
+                {savedWorkout && <div className='saved-workout'>{savedWorkout.intensity}</div>}
                 <input 
                     value={newWorkout.intensity}
                     onChange={(e) => setNewWorkout({...newWorkout, intensity: e.target.value})} 

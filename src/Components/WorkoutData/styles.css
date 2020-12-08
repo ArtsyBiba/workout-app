@@ -42,6 +42,11 @@
 	justify-content: space-between;
 }
 
+.workout-data .user-input-wrapper .user-input .saved-workout {
+	justify-self: center;
+	color: black;
+}
+
 .workout-data .user-input-wrapper .buttons {
 	display: flex;
 	justify-content: center;
