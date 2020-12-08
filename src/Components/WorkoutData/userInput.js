@@ -12,21 +12,6 @@ export default function UserInput(props) {
         date: selectedDate,
     };
 
-    const [savedWorkout, setSavedWorkout] = useState(defaultWorkout);
-
-    useEffect(() => {
-        let ref = firebase.db.ref().child(`users/${authUser.uid}/workouts/`);
-        ref.once('value', snapshot => {
-            snapshot.forEach(childsnapshot => {
-                var childData = childsnapshot.val();
-                console.log(childData)
-            })
-            // let data = snapshot.val();
-            // setSavedWorkout(data);
-            // console.log(savedWorkout)
-        });
-    }, [firebase, authUser, selectedDate]);
-
     const [newWorkout, setNewWorkout] = useState(defaultWorkout);
 
     useEffect(() => {
