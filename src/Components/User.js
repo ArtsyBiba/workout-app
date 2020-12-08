@@ -6,7 +6,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 const User = (props) => {
     const {firebase, authUser} = props;
 
-    const [username, setUsername] = useState('')
+    const [username, setUsername] = useState('');
 
     useEffect(() => {
         let ref = firebase.db.ref().child(`users/${authUser.uid}/username`);
@@ -14,7 +14,7 @@ const User = (props) => {
             let data = snapshot.val();
             setUsername(data);
         });
-    }, [firebase, authUser])
+    }, [firebase, authUser]);
     
     return ( 
         <>
