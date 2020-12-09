@@ -40,6 +40,7 @@ export default function WorkoutData(props) {
                     firebase={firebase}
                     authUser={authUser}
                     savedWorkout={savedWorkout}
+                    setSavedWorkout={setSavedWorkout}
                     workoutId={workoutId}
                 />
             </div>

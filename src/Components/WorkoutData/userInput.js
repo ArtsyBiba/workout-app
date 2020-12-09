@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './styles.css';
 
 export default function UserInput(props) {
-    const {firebase, authUser, selectedDate, savedWorkout, workoutId} = props;
+    const {firebase, authUser, selectedDate, savedWorkout, setSavedWorkout, workoutId} = props;
 
     const defaultWorkout = {
         activity: '',
@@ -28,7 +28,7 @@ export default function UserInput(props) {
     const handleReset = () => {
         if (authUser) {
             firebase.resetWorkout(authUser.uid, selectedDate, workoutId);
-            setNewWorkout(defaultWorkout);
+            setSavedWorkout(defaultWorkout);
         }
     };
 
