@@ -11,19 +11,14 @@ export default function WorkoutData(props) {
     const [savedWorkout, setSavedWorkout] = useState([]);
 
     useEffect(() => {
-        let ref = firebase.db.ref().child(`users/${authUser.uid}/workouts`);
-        ref.orderByChild('date').equalTo(selectedDate).on('value', snapshot => {
-            let data = snapshot.val();
-            const values = Object.values(data);
-            setSavedWorkout(values);
+        const ref = firebase.db.ref().child(`users/${authUser.uid}/workouts`);
+        ref.orderByChild('date').equalTo(selectedDate).on("value", (snapshot) => {
+            snapshot.forEach((childSnapshot) => {
+                let childData = childSnapshot.val();
+                // let id = childData.id;
+                setSavedWorkout(childData);
+            }); 
         });
-        // let ref = firebase.db.ref().child(`users/${authUser.uid}/workouts/`);
-        // ref.once('value', snapshot => {
-        //     snapshot.forEach(childsnapshot => {
-        //         var childData = childsnapshot.val();
-        //         setSavedWorkout(childData);
-        //     })
-        // });
     }, [selectedDate]);
 
     console.log(savedWorkout)
