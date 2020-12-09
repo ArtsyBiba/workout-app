@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import './styles.css';
 
@@ -13,10 +13,6 @@ export default function UserInput(props) {
     };
 
     const [newWorkout, setNewWorkout] = useState(defaultWorkout);
-
-    useEffect(() => {
-        setNewWorkout({...newWorkout, date: selectedDate});
-    }, [selectedDate]);
 
     const handleSubmit = () => {
         if (authUser) {
