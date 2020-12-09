@@ -28,6 +28,7 @@ export default function UserInput(props) {
     const handleReset = () => {
         if (authUser) {
             firebase.resetWorkout(authUser.uid, selectedDate, workoutId);
+            setNewWorkout(defaultWorkout);
         }
     };
 

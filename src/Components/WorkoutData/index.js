@@ -15,7 +15,8 @@ export default function WorkoutData(props) {
         setSavedWorkout([]);
         
         const ref = firebase.db.ref().child(`users/${authUser.uid}/workouts`);
-        ref.orderByChild('date').equalTo(selectedDate).on("value", (snapshot) => {
+        const query = ref.orderByChild('date').equalTo(selectedDate);
+        query.on("value", (snapshot) => {
             snapshot.forEach((childSnapshot) => {
                 let childData = childSnapshot.val();
                 let id = childSnapshot.key;

@@ -44,7 +44,7 @@ var config = {
 
     resetWorkout = (uid, selectedDate, workoutId) => {
         const ref = this.db.ref().child(`users/${uid}/workouts/${workoutId}`);
-        ref.delete();
+        ref.remove();
     };
 }
 
