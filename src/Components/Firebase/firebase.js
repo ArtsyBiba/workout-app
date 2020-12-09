@@ -42,10 +42,10 @@ var config = {
         ref.push(workout);
     };
 
-    updateWorkout = (uid, workout, workoutKey) => {
-        const ref = this.db.ref().child(`users/${uid}/workouts/${workoutKey}`);
-        ref.update(workout);
+    resetWorkout = (uid, selectedDate, workoutId) => {
+        const ref = this.db.ref().child(`users/${uid}/workouts/${workoutId}`);
+        ref.delete();
     };
 }
 
-export default Firebase
+export default Firebase;

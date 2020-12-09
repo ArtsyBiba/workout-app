@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './styles.css';
 
 export default function UserInput(props) {
-    const {firebase, authUser, selectedDate, savedWorkout} = props;
+    const {firebase, authUser, selectedDate, savedWorkout, workoutId} = props;
 
     const defaultWorkout = {
         activity: '',
@@ -22,17 +22,12 @@ export default function UserInput(props) {
         if (authUser) {
             firebase.addWorkout(authUser.uid, newWorkout);
             setNewWorkout(defaultWorkout);
-            // setOpenSnackbar(true);
-            // setSnackbarMsg('Added activity');
-            // setTimeout(() => {
-            //     setOpenSnackbar(false)
-            // }, 3000)
         }
     };
 
     const handleReset = () => {
         if (authUser) {
-            // firebase.updateWorkout(uid, defaultWorkout, workoutKey);
+            firebase.resetWorkout(authUser.uid, selectedDate, workoutId);
         }
     };
 

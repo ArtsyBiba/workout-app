@@ -9,6 +9,7 @@ export default function WorkoutData(props) {
     const selectedDate = date.format('MM/DD/YYYY');
 
     const [savedWorkout, setSavedWorkout] = useState([]);
+    const [workoutId, setWorkoutId] = useState('');
 
     useEffect(() => {
         setSavedWorkout([]);
@@ -17,12 +18,12 @@ export default function WorkoutData(props) {
         ref.orderByChild('date').equalTo(selectedDate).on("value", (snapshot) => {
             snapshot.forEach((childSnapshot) => {
                 let childData = childSnapshot.val();
+                let id = childSnapshot.key;
+                setWorkoutId(id);
                 setSavedWorkout(childData);
-            }); 
+            });          
         });
     }, [selectedDate]);
-
-    console.log(savedWorkout)
 
     return (
         <div className='workout-data'>
@@ -38,6 +39,7 @@ export default function WorkoutData(props) {
                     firebase={firebase}
                     authUser={authUser}
                     savedWorkout={savedWorkout}
+                    workoutId={workoutId}
                 />
             </div>
         </div>
