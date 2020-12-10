@@ -7,6 +7,7 @@ export default function WorkoutStatsBoard(props) {
     
     const [workouts, setWorkouts] = useState();
     const [workoutIds, setWorkoutIds] = useState([]);
+    const [totalMinutes, setTotalMinutes] = useState(0);
 
     useEffect(() => {
         const ref = firebase.db.ref().child(`users/${authUser.uid}/workouts`);
@@ -24,14 +25,14 @@ export default function WorkoutStatsBoard(props) {
         for (const workout in workouts) {
             let minutes = workouts[workout].duration;
             sum = Number(minutes) + Number(sum);
-        }
-       
-        return sum;
+        }    
+        
+        setTotalMinutes(sum);
     };
 
-    if(workouts) {countTotalMinutes(workouts)};
-
-    console.log(sum)
+    useEffect(() => {
+        countTotalMinutes(workouts);
+    }, [workouts]);
 
     return (
         <div className='workout-stats'>
@@ -43,7 +44,7 @@ export default function WorkoutStatsBoard(props) {
                 </div>
                 <div className='stats'>
                     <div className='stat-name'># of Minutes</div>
-                    <div className='stat-data'></div>
+                    <div className='stat-data'>{totalMinutes}</div>
                 </div>
                 <div className='stats'>
                     <div className='stat-name'>Average Intensity</div>
