@@ -4,6 +4,7 @@
 	height: 120px;
 	background-color: white;
 	display: flex;
+	flex-direction: column;
 	justify-content: space-evenly;
 }
 
@@ -11,5 +12,30 @@
 	font-weight: 700;
 	min-height: 2em;
 	line-height: 2em;
+	text-align: center;
+}
+
+.workout-stats .display {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.workout-stats .display .stats {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+}
+
+.workout-stats .display .stats .stat-name {
+	font-weight: 600;
+	min-height: 1.5em;
+	line-height: 1.5em;
+	text-align: center;
+}
+
+.workout-stats .display .stats .stat-data {
+	font-weight: 400;
+	min-height: 1.5em;
+	line-height: 1.5em;
 	text-align: center;
 }

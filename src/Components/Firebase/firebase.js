@@ -42,7 +42,7 @@ var config = {
         ref.push(workout);
     };
 
-    resetWorkout = (uid, selectedDate, workoutId) => {
+    resetWorkout = (uid, workoutId) => {
         const ref = this.db.ref().child(`users/${uid}/workouts/${workoutId}`);
         ref.remove();
     };
