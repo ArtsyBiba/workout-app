@@ -24,7 +24,7 @@ export default function WorkoutData(props) {
                 setSavedWorkout(childData);
             });          
         });
-    }, [selectedDate]);
+    }, [selectedDate, authUser, firebase]);
 
     return (
         <div className='workout-data'>
