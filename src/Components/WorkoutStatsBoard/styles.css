@@ -1,0 +1,15 @@
+.workout-stats {
+	box-sizing: border-box;
+	font-size: 1rem;
+	height: 120px;
+	background-color: white;
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.workout-stats .header {
+	font-weight: 700;
+	min-height: 2em;
+	line-height: 2em;
+	text-align: center;
+}

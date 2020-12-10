@@ -20,6 +20,7 @@ import Sidebar from '../components/Sidebar';
 import Calendar from '../components/Calendar';
 import User from '../components/User';
 import WorkoutData from '../components/WorkoutData';
+import WorkoutStatsBoard from '../components/WorkoutStatsBoard';
 import { AuthUserContext, withAuthentication } from '../components/Session';
 
 function Dashboard(props) {
@@ -89,6 +90,9 @@ function Dashboard(props) {
                                     authUser={authUser}
                                     date={date}
                                 />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <WorkoutStatsBoard />
                             </Grid>
                             <Grid item xs={12}>
                                 <Box pt={4}>
