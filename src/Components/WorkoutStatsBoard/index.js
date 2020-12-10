@@ -5,7 +5,7 @@ import './styles.css';
 export default function WorkoutStatsBoard(props) {
     const {firebase, authUser} = props;
     
-    const [workouts, setWorkouts] = useState([]);
+    const [workouts, setWorkouts] = useState();
     const [workoutIds, setWorkoutIds] = useState([]);
 
     useEffect(() => {
@@ -18,16 +18,20 @@ export default function WorkoutStatsBoard(props) {
         });
     }, [authUser, firebase]);
 
-    // const countTotalMinutes = (workouts, workoutIds) => {
-    //     const minutesArray = [];
-    //     let index = 0;
+    const countTotalMinutes = (workouts) => {
+        let sum = 0;
+        
+        for (const workout in workouts) {
+            let minutes = workouts[workout].duration;
+            sum = Number(minutes) + Number(sum);
+        }
+       
+        return sum;
+    };
 
-    //     for (const workout in workouts) {
-    //         // minutesArray.push(workout.workoutIds[index].duration);
-    //         index++;
-    //         console.log(index)
-    //     }
-    // };
+    if(workouts) {countTotalMinutes(workouts)};
+
+    console.log(sum)
 
     return (
         <div className='workout-stats'>
@@ -39,7 +43,7 @@ export default function WorkoutStatsBoard(props) {
                 </div>
                 <div className='stats'>
                     <div className='stat-name'># of Minutes</div>
-                    <div className='stat-data'>num</div>
+                    <div className='stat-data'></div>
                 </div>
                 <div className='stats'>
                     <div className='stat-name'>Average Intensity</div>
