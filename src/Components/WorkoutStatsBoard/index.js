@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {default as ActivityBoard} from 'react-github-contribution-calendar';
 
 import './styles.css';
 import TotalMinutes from './totalMinutes';
@@ -20,9 +21,18 @@ export default function WorkoutStatsBoard(props) {
         });
     }, [authUser, firebase]);
 
+    let values = {
+        '2016-06-23': 1,
+        '2016-06-26': 2,
+        '2016-06-27': 3,
+        '2016-06-28': 4,
+        '2016-06-29': 4
+      }
+    let until = '2016-06-30';
+
     return (
         <div className='workout-stats'>
-            <div className='header'>Workout Board - Total for This Year</div>
+            <div className='header'>Workout Dashboard - Total for This Year</div>
             <div className='display'>
                 <div className='stats'>
                     <div className='stat-name'># of Workouts</div>
@@ -30,6 +40,9 @@ export default function WorkoutStatsBoard(props) {
                 </div>
                 <TotalMinutes workouts={workouts} />
                 <AverageIntensity workouts={workouts} workoutIds={workoutIds} />
+            </div>
+            <div className='activity-board-wrapper'>
+                <ActivityBoard values={values} until={until} />
             </div>
         </div>
     )

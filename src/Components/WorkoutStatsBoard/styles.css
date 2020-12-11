@@ -1,7 +1,6 @@
 .workout-stats {
 	box-sizing: border-box;
 	font-size: 1rem;
-	height: 120px;
 	background-color: white;
 	display: flex;
 	flex-direction: column;
@@ -38,4 +37,8 @@
 	min-height: 1.5em;
 	line-height: 1.5em;
 	text-align: center;
+}
+
+.workout-stats .activity-board-wrapper {
+	margin: auto;
 }
