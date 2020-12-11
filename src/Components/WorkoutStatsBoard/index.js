@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import './styles.css';
 import TotalMinutes from './totalMinutes';
+import AverageIntensity from './averageIntensity';
 
 export default function WorkoutStatsBoard(props) {
     const {firebase, authUser} = props;
@@ -28,10 +29,7 @@ export default function WorkoutStatsBoard(props) {
                     <div className='stat-data'>{workoutIds.length}</div>
                 </div>
                 <TotalMinutes workouts={workouts} />
-                <div className='stats'>
-                    <div className='stat-name'>Average Intensity</div>
-                    <div className='stat-data'>num</div>
-                </div>
+                <AverageIntensity workouts={workouts} workoutIds={workoutIds} />
             </div>
         </div>
     )
