@@ -16,8 +16,9 @@ export default function TotalMinutes(props) {
         }    
         
         const average = sum / workoutIds.length;
+        const rounded = Math.round(average * 10) / 10;
 
-        setAverageIntensity(average.toString());
+        setAverageIntensity(rounded.toString());
     };
 
     useEffect(() => {
