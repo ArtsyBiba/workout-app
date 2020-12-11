@@ -17,6 +17,7 @@
 .workout-stats .display {
 	display: flex;
 	justify-content: space-evenly;
+	margin-top: 1em;
 }
 
 .workout-stats .display .stats {
@@ -41,4 +42,5 @@
 
 .workout-stats .activity-board-wrapper {
 	margin: auto;
+	margin-top: 1.2em;
 }

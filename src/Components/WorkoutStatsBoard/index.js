@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {default as ActivityBoard} from 'react-github-contribution-calendar';
+import moment from 'moment';
 
 import './styles.css';
 import TotalMinutes from './totalMinutes';
@@ -10,6 +11,7 @@ export default function WorkoutStatsBoard(props) {
     
     const [workouts, setWorkouts] = useState();
     const [workoutIds, setWorkoutIds] = useState([]);
+    const [formattedWorkouts, setFormattedWorkouts] = useState();
 
     useEffect(() => {
         const ref = firebase.db.ref().child(`users/${authUser.uid}/workouts`);
@@ -21,28 +23,50 @@ export default function WorkoutStatsBoard(props) {
         });
     }, [authUser, firebase]);
 
-    let values = {
-        '2016-06-23': 1,
-        '2016-06-26': 2,
-        '2016-06-27': 3,
-        '2016-06-28': 4,
-        '2016-06-29': 4
+    const today = moment();
+    const formattedToday = today.format('YYYY-MM-DD');
+
+    const formatWorkouts = (workouts) => {
+        let workoutsList = {};
+        
+        for (const workout in workouts) {
+            let day = workoutsList[workout].date;
+            let intensity = workouts[workout].intensity;
+            workoutsList[day] = intensity;
+        }    
+        
+        console.log(workoutsList)
+    };
+    formatWorkouts()
+    const values = {
+        '2020-12-05': 1,
+        '2020-12-06': 2,
+        '2020-12-08': 3,
+        '2020-12-09': 4,
+        '2020-12-11': 4
       }
-    let until = '2016-06-30';
+    
+    const panelColors = [
+        '#EEEEEE',
+        '#F78A23',
+        '#F87D09',
+        '#AC5808',
+        '#7B3F06'
+    ];
 
     return (
         <div className='workout-stats'>
-            <div className='header'>Workout Dashboard - Total for This Year</div>
+            <div className='header'>Workouts Dashboard</div>
             <div className='display'>
                 <div className='stats'>
-                    <div className='stat-name'># of Workouts</div>
+                    <div className='stat-name'>Total Workouts</div>
                     <div className='stat-data'>{workoutIds.length}</div>
                 </div>
                 <TotalMinutes workouts={workouts} />
                 <AverageIntensity workouts={workouts} workoutIds={workoutIds} />
             </div>
             <div className='activity-board-wrapper'>
-                <ActivityBoard values={values} until={until} />
+                <ActivityBoard values={values} until={formattedToday} panelColors={panelColors} />
             </div>
         </div>
     )
