@@ -18,6 +18,7 @@ export default function UserInput(props) {
 
     const handleSubmit = () => {
         if (authUser) {
+            newWorkout.date = selectedDate;
             firebase.addWorkout(authUser.uid, newWorkout);
             setNewWorkout(defaultWorkout);
         }
