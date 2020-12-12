@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './styles.css';
 
@@ -13,6 +13,8 @@ export default function UserInput(props) {
     };
 
     const [newWorkout, setNewWorkout] = useState(defaultWorkout);
+
+    console.log(newWorkout)
 
     const handleSubmit = () => {
         if (authUser) {

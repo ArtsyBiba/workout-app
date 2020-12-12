@@ -23,9 +23,6 @@ export default function WorkoutStatsBoard(props) {
         });
     }, [authUser, firebase]);
 
-    const today = moment();
-    const formattedToday = today.format('YYYY-MM-DD');
-
     const formatWorkouts = (workouts) => {
         let workoutsList = {};
         
@@ -41,22 +38,22 @@ export default function WorkoutStatsBoard(props) {
     useEffect(() => {
         formatWorkouts(workouts);
     }, [workouts]);
-    console.log(formattedWorkouts)
     
-    const values = {
-        '2020-12-05': 1,
-        '2020-12-06': 2,
-        '2020-12-08': 3,
-        '2020-12-09': 4,
-        '2020-12-11': 4
-      }
+    const today = moment();
+    const formattedToday = today.format('YYYY-MM-DD');
     
     const panelColors = [
-        '#EEEEEE',
-        '#F78A23',
-        '#F87D09',
-        '#AC5808',
-        '#7B3F06'
+        'rgb(250,250,250)', //0
+        'rgb(152,251,152)', //1
+        'rgb(152,251,152)', //2
+        'rgb(152,251,152)', //3 
+        'rgb(173,255,47)', //4
+        'rgb(127,255,0)', //5
+        'rgb(127,255,0)', //6
+        'rgb(50,205,50)', //7
+        'rgb(50,205,50)', //8
+        'rgb(0,128,0)', //9
+        'rgb(0,100,0)', //10
     ];
 
     return (
