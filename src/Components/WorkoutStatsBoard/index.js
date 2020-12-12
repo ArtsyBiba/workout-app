@@ -30,14 +30,19 @@ export default function WorkoutStatsBoard(props) {
         let workoutsList = {};
         
         for (const workout in workouts) {
-            let day = workoutsList[workout].date;
-            let intensity = workouts[workout].intensity;
+            let day = workouts[workout].date;
+            let intensity = Number(workouts[workout].intensity);
             workoutsList[day] = intensity;
         }    
         
-        console.log(workoutsList)
+        setFormattedWorkouts(workoutsList);
     };
-    formatWorkouts()
+    
+    useEffect(() => {
+        formatWorkouts(workouts);
+    }, [workouts]);
+    console.log(formattedWorkouts)
+    
     const values = {
         '2020-12-05': 1,
         '2020-12-06': 2,
@@ -66,7 +71,11 @@ export default function WorkoutStatsBoard(props) {
                 <AverageIntensity workouts={workouts} workoutIds={workoutIds} />
             </div>
             <div className='activity-board-wrapper'>
-                <ActivityBoard values={values} until={formattedToday} panelColors={panelColors} />
+                <ActivityBoard 
+                    values={formattedWorkouts || formattedToday} 
+                    until={formattedToday} 
+                    panelColors={panelColors} 
+                />
             </div>
         </div>
     )
