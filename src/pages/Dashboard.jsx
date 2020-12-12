@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
-import moment from 'moment';
 
 import clsx from 'clsx';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -17,11 +16,10 @@ import MenuIcon from '@material-ui/icons/Menu';
 import useStyles from '../config/theme.dashboard';
 import Copyright from '../components/Copyright';
 import Sidebar from '../components/Sidebar';
-import Calendar from '../components/Calendar';
 import User from '../components/User';
-import WorkoutData from '../components/WorkoutData';
 import WorkoutStatsBoard from '../components/WorkoutStatsBoard';
 import { AuthUserContext, withAuthentication } from '../components/Session';
+import CalendarContainer from '../components/CalendarContainer';
 
 function Dashboard(props) {
     const classes = useStyles();
@@ -29,7 +27,6 @@ function Dashboard(props) {
     const {firebase} = props;
 
     const [open, setOpen] = useState(false);
-    const [date, setDate] = useState(moment());
   
     const handleDrawerOpen = () => setOpen(true);
     const handleDrawerClose = () => setOpen(false);
@@ -76,21 +73,10 @@ function Dashboard(props) {
                     <div className={classes.appBarSpacer} />
                     <Container maxWidth='xl' className={classes.container}>
                         <Grid container spacing={3}>
-                            <Grid item xs={12} sm={6}>
-                                <Calendar 
-                                    firebase={firebase} 
-                                    authUser={authUser}
-                                    date={date}
-                                    setDate={setDate} 
-                                />
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
-                                <WorkoutData
-                                    firebase={firebase} 
-                                    authUser={authUser}
-                                    date={date}
-                                />
-                            </Grid>
+                            <CalendarContainer 
+                                firebase={firebase} 
+                                authUser={authUser}
+                            />
                             <Grid item xs={12}>
                                 <WorkoutStatsBoard
                                     firebase={firebase} 
