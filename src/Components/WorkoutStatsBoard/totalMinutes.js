@@ -24,7 +24,7 @@ export default function TotalMinutes(props) {
 
     return (
         <div className='stats'>
-            <div className='stat-name'># of Minutes</div>
+            <div className='stat-name'>Total Minutes: </div>
             <div className='stat-data'>{totalMinutes}</div>
         </div>
     )

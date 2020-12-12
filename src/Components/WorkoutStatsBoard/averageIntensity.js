@@ -27,7 +27,7 @@ export default function TotalMinutes(props) {
 
     return (
         <div className='stats'>
-            <div className='stat-name'>Average Intensity</div>
+            <div className='stat-name'>Average Intensity: </div>
             <div className='stat-data'>{averageIntensity}</div>
         </div>
     )

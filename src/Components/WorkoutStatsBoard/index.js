@@ -59,20 +59,22 @@ export default function WorkoutStatsBoard(props) {
     return (
         <div className='workout-stats'>
             <div className='header'>Workouts Dashboard</div>
-            <div className='display'>
-                <div className='stats'>
-                    <div className='stat-name'>Total Workouts</div>
-                    <div className='stat-data'>{workoutIds.length}</div>
+            <div className='body'>
+                <div className='display'>
+                    <div className='stats'>
+                        <div className='stat-name'>Total Workouts: </div>
+                        <div className='stat-data'>{workoutIds.length}</div>
+                    </div>
+                    <TotalMinutes workouts={workouts} />
+                    <AverageIntensity workouts={workouts} workoutIds={workoutIds} />
                 </div>
-                <TotalMinutes workouts={workouts} />
-                <AverageIntensity workouts={workouts} workoutIds={workoutIds} />
-            </div>
-            <div className='activity-board-wrapper'>
-                <ActivityBoard 
-                    values={formattedWorkouts || formattedToday} 
-                    until={formattedToday} 
-                    panelColors={panelColors} 
-                />
+                <div className='activity-board-wrapper'>
+                    <ActivityBoard 
+                        values={formattedWorkouts || formattedToday} 
+                        until={formattedToday} 
+                        panelColors={panelColors} 
+                    />
+                </div>
             </div>
         </div>
     )

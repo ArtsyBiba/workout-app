@@ -1,10 +1,12 @@
 .workout-stats {
 	box-sizing: border-box;
 	font-size: 1rem;
-	background-color: white;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
+	margin: auto;
+	margin-top: 1em;
+	width: 95%;
 }
 
 .workout-stats .header {
@@ -12,6 +14,12 @@
 	min-height: 2em;
 	line-height: 2em;
 	text-align: center;
+	background-color: none;
+}
+
+.workout-stats .body {
+	background-color: white;
+	margin-top: 0.5em;
 }
 
 .workout-stats .display {
@@ -22,7 +30,7 @@
 
 .workout-stats .display .stats {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	justify-content: space-evenly;
 }
 
@@ -31,6 +39,7 @@
 	min-height: 1.5em;
 	line-height: 1.5em;
 	text-align: center;
+	margin-right: 0.5em;
 }
 
 .workout-stats .display .stats .stat-data {
@@ -42,5 +51,12 @@
 
 .workout-stats .activity-board-wrapper {
 	margin: auto;
-	margin-top: 1.2em;
+	margin-top: 1.5em;
+	width: 60%;
+}
+
+@media (max-width: 600px) {
+	.workout-stats .body {
+		font-size: 0.8em;
+	}
 }

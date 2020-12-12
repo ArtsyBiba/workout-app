@@ -77,17 +77,11 @@ function Dashboard(props) {
                                 firebase={firebase} 
                                 authUser={authUser}
                             />
-                            <Grid item xs={12}>
-                                <WorkoutStatsBoard
-                                    firebase={firebase} 
-                                    authUser={authUser}
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <Box pt={4}>
-                                    <Copyright />
-                                </Box>
-                            </Grid>
+                            <WorkoutStatsBoard
+                                firebase={firebase} 
+                                authUser={authUser}
+                            />
+                            <Copyright />
                         </Grid>
                     </Container>
                 </main>
