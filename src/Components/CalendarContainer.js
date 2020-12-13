@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import moment from 'moment';
 import styled from 'styled-components';
 
-import Grid from '@material-ui/core/Grid';
-
 import Calendar from '../components/Calendar';
 import WorkoutData from '../components/WorkoutData';
 
@@ -35,4 +33,5 @@ const StyledContainer = styled.div`
     justify-content: space-evenly;
     width: 100%;
     margin: auto;
+    margin-top: 1em;
 `;

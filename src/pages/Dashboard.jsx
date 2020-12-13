@@ -30,11 +30,8 @@ function Dashboard(props) {
         <AuthUserContext.Consumer>
             {authUser => authUser ? (
                 <StyledPage>
-                    <AppBar 
-                        position='absolute' 
-                        className={classes.appBar}
-                    >
-                        <Toolbar className={classes.toolbar}>
+                    <AppBar position='absolute'>
+                        <Toolbar>
                             <Typography 
                                 component='h1' 
                                 variant='h6' 
@@ -42,7 +39,7 @@ function Dashboard(props) {
                                 noWrap 
                                 className={classes.title}
                             >
-                                💪  Dashboard
+                                💪 Workout Tracker
                             </Typography>
                             <IconButton color='inherit'>
                                 <Badge badgeContent={0} color='secondary'>
@@ -80,11 +77,12 @@ const SyledDashboard = styled.div`
     justify-content: space-evenly;
     width: 90%;
     margin: auto;
-    margin-top: 5.5em;
+    margin-top: 4em;
 `;
 
 const StyledPage = styled.div`
     display: 'flex';
+    background-color: #f5f3ed;
 `;
 
 export default withRouter(withAuthentication(Dashboard));
