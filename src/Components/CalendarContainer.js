@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import moment from 'moment';
+import styled from 'styled-components';
 
 import Grid from '@material-ui/core/Grid';
 
@@ -12,22 +13,26 @@ export default function CalendarContainer(props) {
     const [date, setDate] = useState(moment());
     
     return (
-        <>
-            <Grid item xs={12} sm={6}>
-                <Calendar 
-                    firebase={firebase} 
-                    authUser={authUser}
-                    date={date}
-                    setDate={setDate} 
-                />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-                <WorkoutData
-                    firebase={firebase} 
-                    authUser={authUser}
-                    date={date}
-                />
-            </Grid>
-        </>
+        <StyledContainer>
+            <Calendar 
+                firebase={firebase} 
+                authUser={authUser}
+                date={date}
+                setDate={setDate} 
+            />
+            <WorkoutData
+                firebase={firebase} 
+                authUser={authUser}
+                date={date}
+            />
+        </StyledContainer>
     )
 };
+
+const StyledContainer = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 100%;
+    margin: auto;
+`;
