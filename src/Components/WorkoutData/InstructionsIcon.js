@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 import HelpIcon from '@material-ui/icons/Help';
 import Popover from '@material-ui/core/Popover';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -36,7 +35,7 @@ export default function InstructionsIcon (props) {
                 onMouseLeave={handlePopoverClose}
             />
             <Popover
-                id="mouse-over-popover"
+                id='mouse-over-popover'
                 className={classes.popover}
                 classes={{
                     paper: classes.paper,
@@ -54,7 +53,9 @@ export default function InstructionsIcon (props) {
                 onClose={handlePopoverClose}
                 disableRestoreFocus
         >
-            <Typography>I use Popover.</Typography>
+            <PopupText>
+                {props.text}
+            </PopupText>
         </Popover>
       </>
     )
@@ -63,4 +64,9 @@ export default function InstructionsIcon (props) {
 const StyledHelpIcon = styled(HelpIcon)`
     font-size: 0.9em;
     padding-left: 5px;
+`;
+
+const PopupText = styled.div`
+    width: 160px;
+    font-size: 0.7em;
 `;

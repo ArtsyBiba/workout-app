@@ -32,7 +32,10 @@ export default function WorkoutData(props) {
         <div className='workout-data'>
             <div className='header'>
                 Workout Data
-                <InstructionsIcon />
+                <InstructionsIcon
+                    text='Enter your workout data after selecting
+                    a date in the calendar.'
+                />
             </div>
             <div className='body'>
                 <div className='selected-date'>
