@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import './styles.css';
 import InputField from './InputField';
+import Button from './Button';
 
 export default function UserInput(props) {
     const {firebase, authUser, selectedDate, savedWorkout, setSavedWorkout, workoutId} = props;
@@ -57,8 +58,8 @@ export default function UserInput(props) {
                 />
             </div>
             <div className='buttons'>
-                <button className='button-add' onClick={handleSubmit}>Add Workout</button>
-                <button className='button-reset' onClick={handleReset}>Reset Workout</button>
+                <Button onClick={handleSubmit}>Add Workout</Button>
+                <Button secondary onClick={handleReset}>Reset Workout</Button>
             </div>
         </div>
     )
