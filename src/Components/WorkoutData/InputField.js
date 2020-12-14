@@ -1,12 +1,7 @@
-import React from 'react';
 import styled from 'styled-components';
 
-export default function UserInput(props) {
-    return (
-        <StyledInput />
-    )
-};
-
-const StyledInput = styled.input`
+const InputField = styled.input`
     width: 35%;
 `;
+
+export default InputField;
