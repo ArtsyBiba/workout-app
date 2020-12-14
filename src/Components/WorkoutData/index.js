@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
+import InstructionsIcon from './InstructionsIcon';
+
 import './styles.css';
 import UserInput from './userInput';
 
@@ -30,6 +32,7 @@ export default function WorkoutData(props) {
         <div className='workout-data'>
             <div className='header'>
                 Workout Data
+                <InstructionsIcon />
             </div>
             <div className='body'>
                 <div className='selected-date'>
