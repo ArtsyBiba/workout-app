@@ -18,6 +18,12 @@ import PasswordForget from '../components/PasswordForget';
 
 function SignIn(props) {
     const classes = useStyles();
+    const styles = {
+        helper: {
+             color: 'red',
+             fontSize: '1em',
+        }
+    };
 
     const initialUser = {
         id: null, 
@@ -72,6 +78,7 @@ function SignIn(props) {
                             autoFocus
                             onChange={handleChange}
                             helperText='For testing you can use: test@test.com'
+                            FormHelperTextProps={{ style: styles.helper }}
                         />
                         <TextField
                             variant='outlined'
@@ -85,6 +92,7 @@ function SignIn(props) {
                             autoComplete='current-password'
                             onChange={handleChange}
                             helperText='For testing you can use: password'
+                            FormHelperTextProps={{ style: styles.helper }}
                         />
                         <Typography className={classes.error} color='secondary'>
                             {user.error ? user.error : ''}

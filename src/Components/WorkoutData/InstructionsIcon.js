@@ -62,11 +62,12 @@ export default function InstructionsIcon (props) {
 };
 
 const StyledHelpIcon = styled(HelpIcon)`
-    font-size: 0.9em;
+    font-size: 1.2em;
     padding-left: 5px;
+    padding-top: 5px;
 `;
 
 const PopupText = styled.div`
     width: 160px;
-    font-size: 0.7em;
+    font-size: 0.75em;
 `;
