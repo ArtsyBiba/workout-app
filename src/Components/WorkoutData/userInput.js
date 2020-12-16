@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import './styles.css';
-import InputField from './InputField';
+import TextField from '@material-ui/core/TextField';
 import Button from './Button';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@material-ui/core/InputLabel';
 
 export default function UserInput(props) {
     const {firebase, authUser, selectedDate, savedWorkout, setSavedWorkout, workoutId} = props;
@@ -37,24 +38,23 @@ export default function UserInput(props) {
     return (
         <div className='user-input-wrapper'>
             <div className='user-input'>
-                <div className='input-type'>Activity Type</div>
-                {savedWorkout && <div className='saved-workout'>{savedWorkout.activity}</div>}
-                <InputField
+                <StyledTextField 
+                    label='Activity Type'
                     value={newWorkout.activity}
                     onChange={(e) => setNewWorkout({...newWorkout, activity: e.target.value})} 
                 />
+                {savedWorkout && <div className='saved-workout'>{savedWorkout.activity}</div>}
             </div>
             <div className='user-input'>
-                <div className='input-type'>Duration (min)</div>
-                {savedWorkout && <div className='saved-workout'>{savedWorkout.duration}</div>}
-                <InputField
+                <StyledTextField 
+                    label='Duration (min)'
                     value={newWorkout.duration}
                     onChange={(e) => setNewWorkout({...newWorkout, duration: e.target.value})} 
                 />
+                {savedWorkout && <div className='saved-workout'>{savedWorkout.duration}</div>}
             </div>
             <div className='user-input'>
-                <div className='input-type'>Intensity (1-10)</div>
-                {savedWorkout && <div className='saved-workout'>{savedWorkout.intensity}</div>}
+                
                 <StyledSelect
                     value={newWorkout.intensity}
                     onChange={(e) => setNewWorkout({...newWorkout, intensity: e.target.value})} 
@@ -70,6 +70,8 @@ export default function UserInput(props) {
                     <MenuItem value={9}>9</MenuItem>
                     <MenuItem value={10}>10</MenuItem>
                 </StyledSelect>
+
+                {savedWorkout && <div className='saved-workout'>{savedWorkout.intensity}</div>}
             </div>
             <div className='buttons'>
                 <Button onClick={handleSubmit}>Add Workout</Button>
@@ -80,6 +82,15 @@ export default function UserInput(props) {
 };
 
 const StyledSelect = styled(Select)`
-    width: 35%;
+    width: 45%;
     text-align: center;
+    margin-left: 10px;
+    
+`;
+
+const StyledTextField = styled(TextField)`
+    width: 45%;
+    text-align: center;
+    margin-left: 10px;
+    font-size: 0.5em;
 `;
