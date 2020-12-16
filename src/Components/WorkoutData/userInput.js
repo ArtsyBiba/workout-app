@@ -6,7 +6,6 @@ import TextField from '@material-ui/core/TextField';
 import Button from './Button';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import InputLabel from '@material-ui/core/InputLabel';
 
 export default function UserInput(props) {
     const {firebase, authUser, selectedDate, savedWorkout, setSavedWorkout, workoutId} = props;
@@ -14,7 +13,7 @@ export default function UserInput(props) {
     const defaultWorkout = {
         activity: '',
         duration: '',
-        intensity: '',
+        intensity: 5,
         date: selectedDate,
     };
 
@@ -54,7 +53,6 @@ export default function UserInput(props) {
                 {savedWorkout && <div className='saved-workout'>{savedWorkout.duration}</div>}
             </div>
             <div className='user-input'>
-                
                 <StyledSelect
                     value={newWorkout.intensity}
                     onChange={(e) => setNewWorkout({...newWorkout, intensity: e.target.value})} 
@@ -82,14 +80,14 @@ export default function UserInput(props) {
 
 const StyledSelect = styled(Select)`
     width: 45%;
-    text-align: center;
-    margin-left: 10px;
     margin-top: 1em;
+    margin-left: 15px;
 `;
 
 const StyledTextField = styled(TextField)`
     width: 45%;
     text-align: center;
-    margin-left: 10px;
     font-size: 0.5em;
+    margin-left: 15px;
 `;
+

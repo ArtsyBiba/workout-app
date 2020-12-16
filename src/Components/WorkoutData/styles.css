@@ -30,6 +30,7 @@
 	font-size: 1rem;
 	line-height: 2em;
 	text-align: center;
+	margin-top: 0.5em;
 }
 
 .workout-data .user-input-wrapper {
@@ -37,17 +38,17 @@
 	flex-direction: column;
 	justify-content: space-between;
 	height: 200px;
-	margin-top: 1em;
+	margin-top: 0.5em;
 }
 
 .workout-data .user-input-wrapper .user-input {
 	display: flex;
-	justify-content: space-between;
 }
 
 .workout-data .user-input-wrapper .user-input .saved-workout {
 	margin: auto;
 	color: grey;
+	padding-top: 10px;
 }
 
 .workout-data .user-input-wrapper .buttons {
