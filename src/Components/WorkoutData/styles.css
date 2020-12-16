@@ -20,7 +20,7 @@
 	height: 265px;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-evenly;
+	justify-content: flex-start;
 	margin-top: 0.5em;
 }
 
@@ -37,6 +37,7 @@
 	flex-direction: column;
 	justify-content: space-between;
 	height: 200px;
+	margin-top: 1em;
 }
 
 .workout-data .user-input-wrapper .user-input {
@@ -52,6 +53,7 @@
 .workout-data .user-input-wrapper .buttons {
 	display: flex;
 	justify-content: center;
+	margin-top: 1em;
 }
 
 @media (max-width: 600px) {

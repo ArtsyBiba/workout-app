@@ -59,18 +59,17 @@ export default function UserInput(props) {
                     value={newWorkout.intensity}
                     onChange={(e) => setNewWorkout({...newWorkout, intensity: e.target.value})} 
                 >
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
-                    <MenuItem value={5}>5</MenuItem>
-                    <MenuItem value={6}>6</MenuItem>
-                    <MenuItem value={7}>7</MenuItem>
-                    <MenuItem value={8}>8</MenuItem>
-                    <MenuItem value={9}>9</MenuItem>
-                    <MenuItem value={10}>10</MenuItem>
+                    <MenuItem value={1}>1 - Rest</MenuItem>
+                    <MenuItem value={2}>2 - Really easy</MenuItem>
+                    <MenuItem value={3}>3 - Easy</MenuItem>
+                    <MenuItem value={4}>4 - Light</MenuItem>
+                    <MenuItem value={5}>5 - Moderate</MenuItem>
+                    <MenuItem value={6}>6 - Challenging</MenuItem>
+                    <MenuItem value={7}>7 - Hard</MenuItem>
+                    <MenuItem value={8}>8 - Really hard</MenuItem>
+                    <MenuItem value={9}>9 - Extremely hard</MenuItem>
+                    <MenuItem value={10}>10 - Maximal</MenuItem>
                 </StyledSelect>
-
                 {savedWorkout && <div className='saved-workout'>{savedWorkout.intensity}</div>}
             </div>
             <div className='buttons'>
@@ -85,7 +84,7 @@ const StyledSelect = styled(Select)`
     width: 45%;
     text-align: center;
     margin-left: 10px;
-    
+    margin-top: 1em;
 `;
 
 const StyledTextField = styled(TextField)`
