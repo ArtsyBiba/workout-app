@@ -5,12 +5,36 @@ import buildCalendar from './build';
 import dayStyles from './styles';
 import Header from './header';
 
-export default function Calendar({date, setDate}) {
+export default function Calendar({date, setDate, firebase, authUser}) {
     const [calendar, setCalendar] = useState([]);
+    const [workoutDates, setWorkoutDates] = useState();
 
     useEffect(() => {
         setCalendar(buildCalendar(date));
     }, [date]);
+
+    useEffect(() => {
+        const ref = firebase.db.ref().child(`users/${authUser.uid}/workouts`);
+        ref.on('value', (snapshot) => {
+            let workouts = snapshot.val();
+            let dates = getWorkoutDates(workouts);
+            console.log(dates)
+            setWorkoutDates(dates);
+        });
+    }, [authUser, firebase]);
+
+    const getWorkoutDates = (workouts) => {
+        const dates = [];
+
+        for (const workout in workouts) {
+            let day = workouts[workout].date;
+            dates.push(day);
+        } 
+
+        return dates;
+    };
+
+    console.log(workoutDates);
 
     return (
         <div className='calendar'>
