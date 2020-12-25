@@ -7,9 +7,9 @@ import UserInput from './userInput';
 
 export default function WorkoutData(props) {
     const {firebase, authUser, date} = props;
-    console.log(date)
 
-    const selectedDate = date.format('MMM DD, YYYY');
+    const selectedDate = date.format('YYYY-MM-DD');
+    const showDate = date.format('MMM DD, YYYY');
 
     const [savedWorkout, setSavedWorkout] = useState([]);
     const [workoutId, setWorkoutId] = useState('');
@@ -40,7 +40,7 @@ export default function WorkoutData(props) {
             </div>
             <div className='body'>
                 <div className='selected-date'>
-                    {selectedDate}
+                    {showDate}
                 </div>
                 <UserInput 
                     selectedDate={selectedDate} 
