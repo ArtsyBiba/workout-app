@@ -2,6 +2,10 @@ function isSelected(day, value) {
     return value.isSame(day, 'day');
 };
 
+function hasWorkout(day, value) {
+    return value.isSame(day, 'day');
+};
+
 function beforeThisMonth(day) {
     var date = new Date();
     var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
@@ -22,6 +26,7 @@ function isToday(day) {
 
 export default function dayStyles(day, value) {
     if (isSelected(day, value)) return 'selected';
+    if (hasWorkout(day, value)) return 'workout';
     if (beforeThisMonth(day)) return 'before';
     if (afterThisMonth(day)) return 'before';
     if (isToday(day)) return 'today';
