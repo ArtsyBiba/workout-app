@@ -18,7 +18,6 @@ export default function Calendar({date, setDate, firebase, authUser}) {
         ref.on('value', (snapshot) => {
             let workouts = snapshot.val();
             let dates = getWorkoutDates(workouts);
-            console.log(dates)
             setWorkoutDates(dates);
         });
     }, [authUser, firebase]);
@@ -33,8 +32,6 @@ export default function Calendar({date, setDate, firebase, authUser}) {
 
         return dates;
     };
-
-    console.log(workoutDates);
 
     return (
         <div className='calendar'>
@@ -53,7 +50,7 @@ export default function Calendar({date, setDate, firebase, authUser}) {
                                 className='day'
                                 onClick={() => setDate(day)}
                             >
-                                <div className={dayStyles(day, date)}>
+                                <div className={dayStyles(day, date, workoutDates)}>
                                     {day.format('D').toString()}
                                 </div>
                             </div>

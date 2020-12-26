@@ -2,8 +2,12 @@ function isSelected(day, value) {
     return value.isSame(day, 'day');
 };
 
-function hasWorkout(day, value) {
-    return value.isSame(day, 'day');
+function hasWorkout(day, workoutDates) {
+    let formattedDate = day.format('YYYY-MM-DD');
+    
+    if(workoutDates) {
+        return workoutDates.includes(formattedDate);
+    }
 };
 
 function beforeThisMonth(day) {
@@ -24,9 +28,9 @@ function isToday(day) {
     return day.isSame(new Date(), 'day');
 };
 
-export default function dayStyles(day, value) {
+export default function dayStyles(day, value, workoutDates) {
     if (isSelected(day, value)) return 'selected';
-    if (hasWorkout(day, value)) return 'workout';
+    if (hasWorkout(day, workoutDates)) return 'workout';
     if (beforeThisMonth(day)) return 'before';
     if (afterThisMonth(day)) return 'before';
     if (isToday(day)) return 'today';
