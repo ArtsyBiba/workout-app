@@ -9,6 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 
 import useStyles from '../config/theme.dashboard';
+import Icon from '../components/Icon';
 import Copyright from '../components/Copyright';
 import User from '../components/User';
 import SignOut from '../components/SignOut';
@@ -31,27 +32,32 @@ function Dashboard(props) {
             {authUser => authUser ? (
                 <StyledPage>
                     <AppBar position='absolute'>
-                        <Toolbar>
-                            <Typography 
+                        <StyledToolbar>
+                            <AppName>
+                                <Icon>💪 </Icon>
+                                <Typography 
                                 component='h1' 
                                 variant='h6' 
                                 color='inherit' 
                                 noWrap 
                                 className={classes.title}
-                            >
-                                💪 Workout Tracker
-                            </Typography>
-                            <IconButton color='inherit'>
-                                <Badge badgeContent={0} color='secondary'>
-                                    <User firebase={firebase} authUser={authUser} />
-                                </Badge>
-                            </IconButton>
-                            <IconButton color='inherit' onClick={signOut}>
-                                <Badge badgeContent={0} color='secondary'>
-                                    <SignOut firebase={firebase} authUser={authUser} />
-                                </Badge>
-                            </IconButton>
-                        </Toolbar>
+                                >
+                                    Workout Tracker
+                                </Typography>
+                            </AppName>
+                            <IconsWrapper>
+                                <IconButton color='inherit'>
+                                    <Badge badgeContent={0} color='secondary'>
+                                        <User firebase={firebase} authUser={authUser} />
+                                    </Badge>
+                                </IconButton>
+                                <IconButton color='inherit' onClick={signOut}>
+                                    <Badge badgeContent={0} color='secondary'>
+                                        <SignOut firebase={firebase} authUser={authUser} />
+                                    </Badge>
+                                </IconButton>
+                            </IconsWrapper>
+                        </StyledToolbar>
                     </AppBar>
 
                     <SyledDashboard>
@@ -83,6 +89,22 @@ const SyledDashboard = styled.div`
 const StyledPage = styled.div`
     display: 'flex';
     background-color: #f5f3ed;
+`;
+
+const AppName = styled.div`
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+`;
+
+const IconsWrapper = styled.div`
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+`;
+
+const StyledToolbar = styled(Toolbar)`
+    justify-content: space-between;
 `;
 
 export default withRouter(withAuthentication(Dashboard));
