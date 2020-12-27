@@ -17,14 +17,12 @@ import WorkoutStatsBoard from '../components/WorkoutStatsBoard';
 import { AuthUserContext, withAuthentication } from '../components/Session';
 import CalendarContainer from '../components/CalendarContainer';
 
-function Dashboard(props) {
+function Dashboard({ firebase, history }) {
     const classes = useStyles();
 
-    const {firebase} = props;
-
     const signOut = () => {
-        props.firebase.auth.signOut()
-        props.history.push('/');
+        firebase.auth.signOut()
+        history.push('/');
     };
 
     return (
@@ -36,11 +34,11 @@ function Dashboard(props) {
                             <AppName>
                                 <Icon>💪 </Icon>
                                 <Typography 
-                                component='h1' 
-                                variant='h6' 
-                                color='inherit' 
-                                noWrap 
-                                className={classes.title}
+                                    component='h1' 
+                                    variant='h6' 
+                                    color='inherit' 
+                                    noWrap 
+                                    className={classes.title}
                                 >
                                     Workout Tracker
                                 </Typography>

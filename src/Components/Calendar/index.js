@@ -5,7 +5,7 @@ import buildCalendar from './build';
 import dayStyles from './styles';
 import Header from './header';
 
-export default function Calendar({date, setDate, firebase, authUser}) {
+export default function Calendar({ date, setDate, firebase, authUser }) {
     const [calendar, setCalendar] = useState([]);
     const [workoutDates, setWorkoutDates] = useState();
 

@@ -15,7 +15,7 @@ import useStyles from '../config/theme.signinup';
 import Copyright from '../components/Copyright';
 import { withFirebase } from '../components/Firebase';
 
-function SignUp(props) {
+function SignUp({ firebase, history }) {
     const classes = useStyles();
 
     const initialUser = {
@@ -35,10 +35,10 @@ function SignUp(props) {
     };
 
     const handleSubmit = e => {
-        props.firebase.auth.createUserWithEmailAndPassword(user.email, user.password)
+        firebase.auth.createUserWithEmailAndPassword(user.email, user.password)
         .then(authUser => {
           // Create a user in the Firebase realtime database
-          return props.firebase
+          return firebase
             .user(authUser.user.uid)
             .set({
               username: user.name,
@@ -47,7 +47,7 @@ function SignUp(props) {
         })
         .then(authUser => {
           setUser(initialUser);
-          props.history.push('/dashboard');
+          history.push('/dashboard');
         })
         .catch(error => {
           setUser({...user, error: error.message})

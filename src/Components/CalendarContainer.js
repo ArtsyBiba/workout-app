@@ -5,9 +5,7 @@ import styled from 'styled-components';
 import Calendar from '../components/Calendar';
 import WorkoutData from '../components/WorkoutData';
 
-export default function CalendarContainer(props) {
-    const {firebase, authUser} = props;
-    
+export default function CalendarContainer({ firebase, authUser }) {
     const [date, setDate] = useState(moment());
     
     return (

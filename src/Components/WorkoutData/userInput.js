@@ -7,9 +7,7 @@ import Button from './Button';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
-export default function UserInput(props) {
-    const {firebase, authUser, selectedDate, savedWorkout, setSavedWorkout, workoutId} = props;
-
+export default function UserInput({ firebase, authUser, selectedDate, savedWorkout, setSavedWorkout, workoutId }) {
     const defaultWorkout = {
         activity: '',
         duration: '',

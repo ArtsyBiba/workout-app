@@ -1,6 +1,6 @@
 import './styles.css';
 
-export default function Header({date, setDate}) {
+export default function Header({ date, setDate }) {
     
     function currentMonthName() {
         return date.format('MMMM');

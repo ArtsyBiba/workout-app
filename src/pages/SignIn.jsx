@@ -16,7 +16,7 @@ import Copyright from '../components/Copyright';
 import { withFirebase } from '../components/Firebase';
 import PasswordForget from '../components/PasswordForget';
 
-function SignIn(props) {
+function SignIn({ firebase, history }) {
     const classes = useStyles();
 
     const initialUser = {
@@ -35,10 +35,10 @@ function SignIn(props) {
     };
 
     const handleSubmit = (e) => {
-        props.firebase.doSignInWithEmailAndPassword(user.email, user.password)
+        firebase.doSignInWithEmailAndPassword(user.email, user.password)
         .then(authUser => {
           setUser({initialUser})
-          props.history.push('/dashboard');
+          history.push('/dashboard');
         })
         .catch(error => {
           setUser({...user, error: error.message})

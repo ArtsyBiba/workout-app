@@ -12,7 +12,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Snackbar from '@material-ui/core/Snackbar';
 import { withFirebase } from './Firebase';
 
-function PasswordForget(props) {
+function PasswordForget({ firebase }) {
   const [open, setOpen] = useState(false);
   const [openAlert, setOpenAlert] = useState(false);
 
@@ -32,7 +32,7 @@ function PasswordForget(props) {
   }
 
   const handleSubmit = () => {
-    props.firebase
+    firebase
       .doPasswordReset(state.email)
       .then(() => {
         setState({email: '', error: null });

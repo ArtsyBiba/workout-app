@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import './styles.css';
 
-export default function TotalMinutes(props) {
-    const {workouts} = props;
-    
+export default function TotalMinutes({ workouts }) {
     const [totalMinutes, setTotalMinutes] = useState(0);
     
     const countTotalMinutes = (workouts) => {

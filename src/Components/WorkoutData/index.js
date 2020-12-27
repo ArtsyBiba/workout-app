@@ -5,7 +5,7 @@ import InstructionsIcon from './InstructionsIcon';
 import './styles.css';
 import UserInput from './userInput';
 
-export default function WorkoutData({firebase, authUser, date}) {
+export default function WorkoutData({ firebase, authUser, date }) {
     const selectedDate = date.format('YYYY-MM-DD');
     const showDate = date.format('MMM DD, YYYY');
 

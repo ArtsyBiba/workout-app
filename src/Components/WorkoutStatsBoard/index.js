@@ -6,9 +6,7 @@ import './styles.css';
 import TotalMinutes from './totalMinutes';
 import AverageIntensity from './averageIntensity';
 
-export default function WorkoutStatsBoard(props) {
-    const {firebase, authUser} = props;
-    
+export default function WorkoutStatsBoard({ firebase, authUser }) {
     const [workouts, setWorkouts] = useState();
     const [workoutIds, setWorkoutIds] = useState([]);
     const [formattedWorkouts, setFormattedWorkouts] = useState();
