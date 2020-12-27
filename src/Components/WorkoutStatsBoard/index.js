@@ -13,32 +13,34 @@ export default function WorkoutStatsBoard({ firebase, authUser }) {
     const [workouts, setWorkouts] = useState();
     const [workoutIds, setWorkoutIds] = useState([]);
     const [formattedWorkouts, setFormattedWorkouts] = useState();
-    const [timePeriod, setTimePeriod] = useState('year');
+    const [timePeriod, setTimePeriod] = useState('all');
 
     useEffect(() => {
         const filterData = (data) => {
-            const updatedData = {};
-            
             switch(timePeriod) {
                 case 'year':
-                    console.log(timePeriod);    
-                    break;
+                    return updateData('year', data);
                 case 'month':
-                    console.log(timePeriod);
-                    break;
+                    return updateData('month', data);
                 case 'two-weeks':
-                    console.log(timePeriod);
-                    break;
+                    return updateData('two-weeks', data);
+                default: return data;
             }
+        };
+
+        const updateData = (length, data) => {
+            const updatedData = {};
+
+            return updatedData;
         };
         
         const ref = firebase.db.ref().child(`users/${authUser.uid}/workouts`);
         ref.on('value', (snapshot) => {
             let data = snapshot.val();
-            console.log(data)
-            filterData();
-            let ids = Object.keys(data);
-            setWorkouts(data);
+
+            let ids = Object.keys(filterData(data));
+
+            setWorkouts(filterData(data));
             setWorkoutIds(ids);
         });
     }, [authUser, firebase, timePeriod]);
@@ -85,6 +87,7 @@ export default function WorkoutStatsBoard({ firebase, authUser }) {
                         value={timePeriod}
                         onChange={(e) => setTimePeriod(e.target.value)} 
                     >
+                        <MenuItem value='all'>All Workouts</MenuItem>
                         <MenuItem value='year'>Last Year</MenuItem>
                         <MenuItem value='month'>Last Month</MenuItem>
                         <MenuItem value='two-weeks'>Last Two Weeks</MenuItem>
