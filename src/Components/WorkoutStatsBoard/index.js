@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import {default as ActivityBoard} from 'react-github-contribution-calendar';
 import moment from 'moment';
+import styled from 'styled-components';
 
 import './styles.css';
 import TotalMinutes from './totalMinutes';
 import AverageIntensity from './averageIntensity';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 
 export default function WorkoutStatsBoard({ firebase, authUser }) {
     const [workouts, setWorkouts] = useState();
@@ -58,6 +61,16 @@ export default function WorkoutStatsBoard({ firebase, authUser }) {
         <div className='workout-stats'>
             <div className='header'>Workouts Dashboard</div>
             <div className='body'>
+                <TimePeriod>
+                    <StyledSelect
+                        // value={newWorkout.intensity}
+                        // onChange={(e) => setNewWorkout({...newWorkout, intensity: e.target.value})} 
+                    >
+                        <MenuItem value={1}>Last Year</MenuItem>
+                        <MenuItem value={2}>Last Month</MenuItem>
+                        <MenuItem value={3}>Last Two Weeks</MenuItem>
+                    </StyledSelect>
+                </TimePeriod>
                 <div className='display'>
                     <div className='stats'>
                         <div className='stat-name'>Total Workouts: </div>
@@ -77,3 +90,19 @@ export default function WorkoutStatsBoard({ firebase, authUser }) {
         </div>
     )
 };
+
+const TimePeriod = styled.div`
+    display: flex;
+    justify-content: center;
+`;
+
+const StyledSelect = styled(Select)`
+    width: 35%;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    justify-self: center;
+
+    @media (max-width: 600px) {
+		width: 60%;
+	}
+`;
