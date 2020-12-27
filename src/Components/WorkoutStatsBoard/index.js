@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {default as ActivityBoard} from 'react-github-contribution-calendar';
+import { default as ActivityBoard } from 'react-github-contribution-calendar';
 import moment from 'moment';
 import styled from 'styled-components';
 
@@ -16,14 +16,32 @@ export default function WorkoutStatsBoard({ firebase, authUser }) {
     const [timePeriod, setTimePeriod] = useState('year');
 
     useEffect(() => {
+        const filterData = (data) => {
+            const updatedData = {};
+            
+            switch(timePeriod) {
+                case 'year':
+                    console.log(timePeriod);    
+                    break;
+                case 'month':
+                    console.log(timePeriod);
+                    break;
+                case 'two-weeks':
+                    console.log(timePeriod);
+                    break;
+            }
+        };
+        
         const ref = firebase.db.ref().child(`users/${authUser.uid}/workouts`);
         ref.on('value', (snapshot) => {
             let data = snapshot.val();
+            console.log(data)
+            filterData();
             let ids = Object.keys(data);
             setWorkouts(data);
             setWorkoutIds(ids);
         });
-    }, [authUser, firebase]);
+    }, [authUser, firebase, timePeriod]);
 
     const formatWorkouts = (workouts) => {
         let workoutsList = {};
