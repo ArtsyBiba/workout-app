@@ -13,6 +13,7 @@ export default function WorkoutStatsBoard({ firebase, authUser }) {
     const [workouts, setWorkouts] = useState();
     const [workoutIds, setWorkoutIds] = useState([]);
     const [formattedWorkouts, setFormattedWorkouts] = useState();
+    const [timePeriod, setTimePeriod] = useState('year');
 
     useEffect(() => {
         const ref = firebase.db.ref().child(`users/${authUser.uid}/workouts`);
@@ -63,12 +64,12 @@ export default function WorkoutStatsBoard({ firebase, authUser }) {
             <div className='body'>
                 <TimePeriod>
                     <StyledSelect
-                        // value={newWorkout.intensity}
-                        // onChange={(e) => setNewWorkout({...newWorkout, intensity: e.target.value})} 
+                        value={timePeriod}
+                        onChange={(e) => setTimePeriod(e.target.value)} 
                     >
-                        <MenuItem value={1}>Last Year</MenuItem>
-                        <MenuItem value={2}>Last Month</MenuItem>
-                        <MenuItem value={3}>Last Two Weeks</MenuItem>
+                        <MenuItem value='year'>Last Year</MenuItem>
+                        <MenuItem value='month'>Last Month</MenuItem>
+                        <MenuItem value='two-weeks'>Last Two Weeks</MenuItem>
                     </StyledSelect>
                 </TimePeriod>
                 <div className='display'>
