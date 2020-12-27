@@ -15,29 +15,42 @@ export default function WorkoutStatsBoard({ firebase, authUser }) {
     const [formattedWorkouts, setFormattedWorkouts] = useState();
     const [timePeriod, setTimePeriod] = useState('all');
 
-    useEffect(() => {
-        const filterData = (data) => {
-            switch(timePeriod) {
-                case 'year':
-                    return updateData('year', data);
-                case 'month':
-                    return updateData('month', data);
-                case 'two-weeks':
-                    return updateData('two-weeks', data);
-                default: return data;
+    const today = moment();
+    const formattedToday = today.format('YYYY-MM-DD');
+
+    const filterData = (data) => {
+        switch(timePeriod) {
+            case 'year':
+                const yearAgo = today.subtract(1, 'years');
+                return updateData(yearAgo, data);
+            case 'month':
+                const monthAgo = today.subtract(1, 'months');
+                return updateData(monthAgo, data);
+            case 'two-weeks':
+                const twoWeeksAgo = today.subtract(2, 'weeks');    
+                return updateData(twoWeeksAgo, data);
+            default: return data;
+        }
+    };
+
+    const updateData = (length, data) => {
+        const updatedData = {};
+
+        for (const workout in data) {
+            console.log(length.format('YYYY-MM-DD'))
+            if (data[workout].date < length) {
+                console.log(data[workout].date)
+                updatedData = {...updatedData, workout}
             }
         };
 
-        const updateData = (length, data) => {
-            const updatedData = {};
+        return updatedData;
+    };
 
-            return updatedData;
-        };
-        
+    useEffect(() => {        
         const ref = firebase.db.ref().child(`users/${authUser.uid}/workouts`);
         ref.on('value', (snapshot) => {
             let data = snapshot.val();
-
             let ids = Object.keys(filterData(data));
 
             setWorkouts(filterData(data));
@@ -60,9 +73,6 @@ export default function WorkoutStatsBoard({ firebase, authUser }) {
     useEffect(() => {
         formatWorkouts(workouts);
     }, [workouts]);
-    
-    const today = moment();
-    const formattedToday = today.format('YYYY-MM-DD');
     
     const panelColors = [
         'rgb(250,250,250)', //0
