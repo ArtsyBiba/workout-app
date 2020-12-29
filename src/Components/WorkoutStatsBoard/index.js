@@ -1,66 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { default as ActivityBoard } from 'react-github-contribution-calendar';
 import moment from 'moment';
-import styled from 'styled-components';
 
 import './styles.css';
-import TotalMinutes from './totalMinutes';
-import AverageIntensity from './averageIntensity';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
+import TotalMinutes from './TotalMinutes';
+import AverageIntensity from './AverageIntensity';
+import TimePeriod from './TimePeriod';
+
 
 export default function WorkoutStatsBoard({ firebase, authUser }) {
     const [workouts, setWorkouts] = useState();
     const [workoutIds, setWorkoutIds] = useState([]);
     const [formattedWorkouts, setFormattedWorkouts] = useState();
-    const [timePeriod, setTimePeriod] = useState('all');
 
     const today = moment();
     const formattedToday = today.format('YYYY-MM-DD');
 
-    const filterData = (data) => {
-        switch(timePeriod) {
-            case 'year':
-                const yearAgo = today.subtract(1, 'years');
-                return updateData(yearAgo, data);
-            case 'month':
-                const monthAgo = today.subtract(1, 'months');
-                return updateData(monthAgo, data);
-            case 'two-weeks':
-                const twoWeeksAgo = today.subtract(2, 'weeks');    
-                return updateData(twoWeeksAgo, data);
-            default: return data;
-        }
-    };
-
-    const updateData = (length, data) => {
-        const updatedData = {};
-        const updatedLength = length.format('YYYY-MM-DD');
-
-        for (const workout in data) {
-            if (data[workout].date > updatedLength) {
-                updatedData[workout] = data[workout];
-            }
-        };
-
-        return updatedData;
-    };
-
-    useEffect(() => {        
-        const ref = firebase.db.ref().child(`users/${authUser.uid}/workouts`);
-        ref.on('value', (snapshot) => {
-            let data = snapshot.val();
-            let filteredData = filterData(data);
-            let ids = Object.keys(filteredData);
-
-            setWorkouts(filteredData);
-            setWorkoutIds(ids);
-        });
-    }, [authUser, firebase, timePeriod]);
-
     const formatWorkouts = (workouts) => {
         let workoutsList = {};
-        
+
         for (const workout in workouts) {
             let day = workouts[workout].date;
             let intensity = Number(workouts[workout].intensity);
@@ -92,17 +50,12 @@ export default function WorkoutStatsBoard({ firebase, authUser }) {
         <div className='workout-stats'>
             <div className='header'>Workouts Dashboard</div>
             <div className='body'>
-                <TimePeriod>
-                    <StyledSelect
-                        value={timePeriod}
-                        onChange={(e) => setTimePeriod(e.target.value)} 
-                    >
-                        <MenuItem value='all'>All Workouts</MenuItem>
-                        <MenuItem value='year'>Last Year</MenuItem>
-                        <MenuItem value='month'>Last Month</MenuItem>
-                        <MenuItem value='two-weeks'>Last Two Weeks</MenuItem>
-                    </StyledSelect>
-                </TimePeriod>
+                <TimePeriod 
+                    setWorkouts={setWorkouts} 
+                    setWorkoutIds={setWorkoutIds}
+                    firebase={firebase}
+                    authUser={authUser}
+                />
                 <div className='display'>
                     <div className='stats'>
                         <div className='stat-name'>Total Workouts: </div>
@@ -122,19 +75,3 @@ export default function WorkoutStatsBoard({ firebase, authUser }) {
         </div>
     )
 };
-
-const TimePeriod = styled.div`
-    display: flex;
-    justify-content: center;
-`;
-
-const StyledSelect = styled(Select)`
-    width: 35%;
-    margin-top: 1em;
-    margin-bottom: 0.5em;
-    justify-self: center;
-
-    @media (max-width: 600px) {
-		width: 60%;
-	}
-`;
