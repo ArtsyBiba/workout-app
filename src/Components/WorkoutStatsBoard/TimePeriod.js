@@ -5,7 +5,7 @@ import moment from 'moment';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
-export default function TotalMinutes({ setWorkouts, setWorkoutIds, firebase, authUser }) {
+export default function TimePeriod({ setWorkouts, setWorkoutIds, firebase, authUser }) {
     const [timePeriod, setTimePeriod] = useState('all');
 
     useEffect(() => {        
@@ -51,21 +51,21 @@ export default function TotalMinutes({ setWorkouts, setWorkoutIds, firebase, aut
     }, [authUser, firebase, timePeriod, setWorkouts, setWorkoutIds]);
 
     return (
-        <TimePeriod>
-        <StyledSelect
-            value={timePeriod}
-            onChange={(e) => setTimePeriod(e.target.value)} 
-        >
-            <MenuItem value='all'>All Workouts</MenuItem>
-            <MenuItem value='year'>Last Year</MenuItem>
-            <MenuItem value='month'>Last Month</MenuItem>
-            <MenuItem value='two-weeks'>Last Two Weeks</MenuItem>
-        </StyledSelect>
-        </TimePeriod>
+        <Wrapper>
+            <StyledSelect
+                value={timePeriod}
+                onChange={(e) => setTimePeriod(e.target.value)} 
+            >
+                <MenuItem value='all'>All Workouts</MenuItem>
+                <MenuItem value='year'>Last Year</MenuItem>
+                <MenuItem value='month'>Last Month</MenuItem>
+                <MenuItem value='two-weeks'>Last Two Weeks</MenuItem>
+            </StyledSelect>
+        </Wrapper>
     )
 };
 
-const TimePeriod = styled.div`
+const Wrapper = styled.div`
     display: flex;
     justify-content: center;
 `;
