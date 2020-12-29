@@ -35,12 +35,11 @@ export default function WorkoutStatsBoard({ firebase, authUser }) {
 
     const updateData = (length, data) => {
         const updatedData = {};
+        const updatedLength = length.format('YYYY-MM-DD');
 
         for (const workout in data) {
-            console.log(length.format('YYYY-MM-DD'))
-            if (data[workout].date < length) {
-                console.log(data[workout].date)
-                updatedData = {...updatedData, workout}
+            if (data[workout].date > updatedLength) {
+                updatedData[workout] = data[workout];
             }
         };
 
@@ -51,9 +50,10 @@ export default function WorkoutStatsBoard({ firebase, authUser }) {
         const ref = firebase.db.ref().child(`users/${authUser.uid}/workouts`);
         ref.on('value', (snapshot) => {
             let data = snapshot.val();
-            let ids = Object.keys(filterData(data));
+            let filteredData = filterData(data);
+            let ids = Object.keys(filteredData);
 
-            setWorkouts(filterData(data));
+            setWorkouts(filteredData);
             setWorkoutIds(ids);
         });
     }, [authUser, firebase, timePeriod]);
