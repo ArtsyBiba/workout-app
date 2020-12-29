@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import InstructionsIcon from './InstructionsIcon';
 
 import './styles.css';
-import UserInput from './userInput';
+import UserInput from './UserInput';
 
 export default function WorkoutData({ firebase, authUser, date }) {
     const selectedDate = date.format('YYYY-MM-DD');

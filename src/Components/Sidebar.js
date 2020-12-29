@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 
 import ListItem from '@material-ui/core/ListItem';

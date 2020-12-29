@@ -31,20 +31,6 @@ export default function WorkoutStatsBoard({ firebase, authUser }) {
     useEffect(() => {
         formatWorkouts(workouts);
     }, [workouts]);
-    
-    const panelColors = [
-        'rgb(250,250,250)', //0
-        'rgb(152,251,152,0.8)', //1
-        'rgb(152,251,152)', //2
-        'rgb(152,251,152)', //3 
-        'rgb(127,255,0)', //4
-        'rgb(127,255,0)', //5
-        'rgb(127,255,0)', //6
-        'rgb(50,205,50)', //7
-        'rgb(50,205,50)', //8
-        'rgb(0,128,0)', //9
-        'rgb(0,100,0)', //10
-    ];
 
     return (
         <div className='workout-stats'>
@@ -75,3 +61,17 @@ export default function WorkoutStatsBoard({ firebase, authUser }) {
         </div>
     )
 };
+
+const panelColors = [
+    'rgb(250,250,250)', //0
+    'rgb(152,251,152,0.8)', //1
+    'rgb(152,251,152)', //2
+    'rgb(152,251,152)', //3 
+    'rgb(127,255,0)', //4
+    'rgb(127,255,0)', //5
+    'rgb(127,255,0)', //6
+    'rgb(50,205,50)', //7
+    'rgb(50,205,50)', //8
+    'rgb(0,128,0)', //9
+    'rgb(0,100,0)', //10
+];
