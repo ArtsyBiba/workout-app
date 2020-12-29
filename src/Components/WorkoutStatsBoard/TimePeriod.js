@@ -8,37 +8,37 @@ import MenuItem from '@material-ui/core/MenuItem';
 export default function TotalMinutes({ setWorkouts, setWorkoutIds, firebase, authUser }) {
     const [timePeriod, setTimePeriod] = useState('all');
 
-    const today = moment();
-
-    const filterData = (data) => {
-        switch(timePeriod) {
-            case 'year':
-                const yearAgo = today.subtract(1, 'years');
-                return updateData(yearAgo, data);
-            case 'month':
-                const monthAgo = today.subtract(1, 'months');
-                return updateData(monthAgo, data);
-            case 'two-weeks':
-                const twoWeeksAgo = today.subtract(2, 'weeks');    
-                return updateData(twoWeeksAgo, data);
-            default: return data;
-        }
-    };
-
-    const updateData = (length, data) => {
-        const updatedData = {};
-        const updatedLength = length.format('YYYY-MM-DD');
-
-        for (const workout in data) {
-            if (data[workout].date > updatedLength) {
-                updatedData[workout] = data[workout];
+    useEffect(() => {        
+        const today = moment();
+        
+        const updateData = (length, data) => {
+            const updatedData = {};
+            const updatedLength = length.format('YYYY-MM-DD');
+    
+            for (const workout in data) {
+                if (data[workout].date > updatedLength) {
+                    updatedData[workout] = data[workout];
+                }
+            };
+    
+            return updatedData;
+        };
+    
+        const filterData = (data) => {
+            switch(timePeriod) {
+                case 'year':
+                    const yearAgo = today.subtract(1, 'years');
+                    return updateData(yearAgo, data);
+                case 'month':
+                    const monthAgo = today.subtract(1, 'months');
+                    return updateData(monthAgo, data);
+                case 'two-weeks':
+                    const twoWeeksAgo = today.subtract(2, 'weeks');    
+                    return updateData(twoWeeksAgo, data);
+                default: return data;
             }
         };
-
-        return updatedData;
-    };
-
-    useEffect(() => {        
+        
         const ref = firebase.db.ref().child(`users/${authUser.uid}/workouts`);
         ref.on('value', (snapshot) => {
             let data = snapshot.val();
@@ -48,7 +48,7 @@ export default function TotalMinutes({ setWorkouts, setWorkoutIds, firebase, aut
             setWorkouts(filteredData);
             setWorkoutIds(ids);
         });
-    }, [authUser, firebase, timePeriod]);
+    }, [authUser, firebase, timePeriod, setWorkouts, setWorkoutIds]);
 
     return (
         <TimePeriod>
