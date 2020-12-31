@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import moment from 'moment';
+import filterData from './filter';
 
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -9,40 +9,10 @@ export default function TimePeriod({ setWorkouts, setWorkoutIds, firebase, authU
     const [timePeriod, setTimePeriod] = useState('all');
 
     useEffect(() => {        
-        const today = moment();
-        
-        const updateData = (length, data) => {
-            const updatedData = {};
-            const updatedLength = length.format('YYYY-MM-DD');
-    
-            for (const workout in data) {
-                if (data[workout].date > updatedLength) {
-                    updatedData[workout] = data[workout];
-                }
-            };
-    
-            return updatedData;
-        };
-    
-        const filterData = (data) => {
-            switch(timePeriod) {
-                case 'year':
-                    const yearAgo = today.subtract(1, 'years');
-                    return updateData(yearAgo, data);
-                case 'month':
-                    const monthAgo = today.subtract(1, 'months');
-                    return updateData(monthAgo, data);
-                case 'two-weeks':
-                    const twoWeeksAgo = today.subtract(2, 'weeks');    
-                    return updateData(twoWeeksAgo, data);
-                default: return data;
-            }
-        };
-        
         const ref = firebase.db.ref().child(`users/${authUser.uid}/workouts`);
         ref.on('value', (snapshot) => {
             let data = snapshot.val();
-            let filteredData = filterData(data);
+            let filteredData = filterData(data, timePeriod);
             let ids = Object.keys(filteredData);
 
             setWorkouts(filteredData);
