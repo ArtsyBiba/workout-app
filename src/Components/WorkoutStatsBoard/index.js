@@ -15,8 +15,8 @@ export default function WorkoutStatsBoard({ firebase, authUser }) {
 
     const today = moment();
     const formattedToday = today.format('YYYY-MM-DD');
-
-    const formatWorkouts = (workouts) => {
+    
+    useEffect(() => {
         let workoutsList = {};
 
         for (const workout in workouts) {
@@ -26,10 +26,6 @@ export default function WorkoutStatsBoard({ firebase, authUser }) {
         }    
         
         setFormattedWorkouts(workoutsList);
-    };
-    
-    useEffect(() => {
-        formatWorkouts(workouts);
     }, [workouts]);
 
     return (
