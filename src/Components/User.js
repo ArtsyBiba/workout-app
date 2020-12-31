@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import Typography from '@material-ui/core/Typography';
-import NotificationsIcon from '@material-ui/icons/Notifications';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
 
 const User = ({ firebase, authUser }) => {
     const [username, setUsername] = useState('');
@@ -19,7 +19,7 @@ const User = ({ firebase, authUser }) => {
             <Typography component='p' style={{paddingRight: '15px'}}>
                 {username}
             </Typography>
-            <NotificationsIcon />
+            <AccountBoxIcon />
         </>
     )
 };
