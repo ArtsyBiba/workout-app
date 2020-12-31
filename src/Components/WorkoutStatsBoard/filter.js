@@ -1,19 +1,6 @@
 import moment from 'moment';
 
-const updateData = (length, data) => {
-    const updatedData = {};
-    const updatedLength = length.format('YYYY-MM-DD');
-
-    for (const workout in data) {
-        if (data[workout].date > updatedLength) {
-            updatedData[workout] = data[workout];
-        }
-    };
-
-    return updatedData;
-};
-
-export default function filterData (data, timePeriod) {
+const filterData = (data, timePeriod) => {
     const today = moment();
     
     switch(timePeriod) {
@@ -29,3 +16,18 @@ export default function filterData (data, timePeriod) {
         default: return data;
     }
 };
+
+const updateData = (length, data) => {
+    const updatedData = {};
+    const updatedLength = length.format('YYYY-MM-DD');
+
+    for (const workout in data) {
+        if (data[workout].date > updatedLength) {
+            updatedData[workout] = data[workout];
+        }
+    };
+
+    return updatedData;
+};
+
+export default filterData;
