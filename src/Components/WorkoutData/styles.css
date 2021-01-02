@@ -33,30 +33,6 @@
 	margin-top: 0.5em;
 }
 
-.workout-data .user-input-wrapper {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	height: 200px;
-	margin-top: 0.5em;
-}
-
-.workout-data .user-input-wrapper .user-input {
-	display: flex;
-}
-
-.workout-data .user-input-wrapper .user-input .saved-workout {
-	margin: auto;
-	color: grey;
-	padding-top: 10px;
-}
-
-.workout-data .user-input-wrapper .buttons {
-	display: flex;
-	justify-content: center;
-	margin-top: 1em;
-}
-
 @media (max-width: 600px) {
 	.workout-data {
 		margin-top: 1em;

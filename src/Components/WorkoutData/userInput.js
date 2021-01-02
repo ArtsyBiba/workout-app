@@ -33,24 +33,24 @@ export default function UserInput({ firebase, authUser, selectedDate, savedWorko
     };
 
     return (
-        <div className='user-input-wrapper'>
-            <div className='user-input'>
+        <UserInputWrapper>
+            <UserInputLine>
                 <StyledTextField 
                     label='Activity Type'
                     value={newWorkout.activity}
                     onChange={(e) => setNewWorkout({...newWorkout, activity: e.target.value})} 
                 />
-                {savedWorkout && <div className='saved-workout'>{savedWorkout.activity}</div>}
-            </div>
-            <div className='user-input'>
+                {savedWorkout && <SavedWorkout>{savedWorkout.activity}</SavedWorkout>}
+            </UserInputLine>
+            <UserInputLine>
                 <StyledTextField 
                     label='Duration (min)'
                     value={newWorkout.duration}
                     onChange={(e) => setNewWorkout({...newWorkout, duration: e.target.value})} 
                 />
-                {savedWorkout && <div className='saved-workout'>{savedWorkout.duration}</div>}
-            </div>
-            <div className='user-input'>
+                {savedWorkout && <SavedWorkout className='saved-workout'>{savedWorkout.duration}</SavedWorkout>}
+            </UserInputLine>
+            <UserInputLine>
                 <StyledSelect
                     value={newWorkout.intensity}
                     onChange={(e) => setNewWorkout({...newWorkout, intensity: e.target.value})} 
@@ -66,13 +66,13 @@ export default function UserInput({ firebase, authUser, selectedDate, savedWorko
                     <MenuItem value={9}>9 - Extremely hard</MenuItem>
                     <MenuItem value={10}>10 - Maximal</MenuItem>
                 </StyledSelect>
-                {savedWorkout && <div className='saved-workout'>{savedWorkout.intensity}</div>}
-            </div>
-            <div className='buttons'>
+                {savedWorkout && <SavedWorkout className='saved-workout'>{savedWorkout.intensity}</SavedWorkout>}
+            </UserInputLine>
+            <ButtonsWrapper>
                 <Button onClick={handleSubmit}>Add Workout</Button>
                 <Button secondary onClick={handleReset}>Reset Workout</Button>
-            </div>
-        </div>
+            </ButtonsWrapper>
+        </UserInputWrapper>
     )
 };
 
@@ -89,3 +89,26 @@ const StyledTextField = styled(TextField)`
     margin-left: 15px;
 `;
 
+const UserInputWrapper = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 200px;
+	margin-top: 0.5em;
+`;
+
+const ButtonsWrapper = styled.div`
+    display: flex;
+	justify-content: center;
+	margin-top: 1em;
+`;
+
+const UserInputLine = styled.div`
+    display: flex;
+`;
+
+const SavedWorkout = styled.div`
+    margin: auto;
+	color: grey;
+	padding-top: 10px;
+`;
