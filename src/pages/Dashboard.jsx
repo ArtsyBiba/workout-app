@@ -1,4 +1,5 @@
 import { withRouter } from 'react-router-dom';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 import AppBar from '@material-ui/core/AppBar';
@@ -12,16 +13,22 @@ import Icon from '../components/Icon';
 import Copyright from '../components/Copyright';
 import User from '../components/User';
 import SignOut from '../components/SignOut';
+import UserProfile from '../components/UserProfile';
 import WorkoutStatsBoard from '../components/WorkoutStatsBoard';
 import { AuthUserContext, withAuthentication } from '../components/Session';
 import CalendarContainer from '../components/CalendarContainer';
 
 function Dashboard({ firebase, history }) {
     const classes = useStyles();
+    const [open, setOpen] = useState(false);
 
     const signOut = () => {
         firebase.auth.signOut()
         history.push('/');
+    };
+
+    const handleClickOpen = () => {
+        setOpen(true);
     };
 
     return (
@@ -44,7 +51,7 @@ function Dashboard({ firebase, history }) {
                             </AppName>
                             <IconsWrapper>
                                 <IconButton color='inherit'>
-                                    <Badge badgeContent={0} color='secondary'>
+                                    <Badge badgeContent={0} color='secondary' onClick={handleClickOpen}>
                                         <User firebase={firebase} authUser={authUser} />
                                     </Badge>
                                 </IconButton>
@@ -68,6 +75,7 @@ function Dashboard({ firebase, history }) {
                         />
                         <Copyright />
                     </SyledDashboard>
+                    <UserProfile open={open} setOpen={setOpen} />
                 </StyledPage>) : (<p>Not authorized.</p>)
             }
         </AuthUserContext.Consumer>
