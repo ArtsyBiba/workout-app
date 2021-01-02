@@ -50,8 +50,8 @@ function Dashboard({ firebase, history }) {
                                 </Typography>
                             </AppName>
                             <IconsWrapper>
-                                <IconButton color='inherit'>
-                                    <Badge badgeContent={0} color='secondary' onClick={handleClickOpen}>
+                                <IconButton color='inherit' onClick={handleClickOpen}>
+                                    <Badge badgeContent={0} color='secondary'>
                                         <User firebase={firebase} authUser={authUser} />
                                     </Badge>
                                 </IconButton>
