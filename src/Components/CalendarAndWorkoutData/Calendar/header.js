@@ -1,4 +1,5 @@
 import './styles.css';
+import styled from 'styled-components';
 
 export default function Header({ date, setDate }) {
     
@@ -19,16 +20,45 @@ export default function Header({ date, setDate }) {
     };
     
     return (
-        <div className='header'>
-            <div className='previous' onClick={() => setDate(previousMonth())}>
+        <HeaderWrapper>
+            <PreviousMonth onClick={() => setDate(previousMonth())}>
                 {String.fromCharCode(171)}
-            </div>
-            <div className='current'>
+            </PreviousMonth>
+            <CurrentMonth>
                 {currentMonthName()} {currentYear()}
-            </div>
-            <div className='next' onClick={() => setDate(nextMonth())}>
+            </CurrentMonth>
+            <NextMonth onClick={() => setDate(nextMonth())}>
                 {String.fromCharCode(187)}
-            </div>
-        </div>
+            </NextMonth>
+        </HeaderWrapper>
     )
 };
+
+const HeaderWrapper = styled.div`
+    background-color: light-blue;
+    text-align: center;
+    min-height: 2rem;
+    line-height: 2rem;
+    color: black;
+    font-weight: 700;
+    display: flex;
+`;
+
+const PreviousMonth = styled.div`
+	flex: 1;
+	text-align: left;
+    margin-left: 1rem;
+    cursor: pointer;
+`;
+
+const CurrentMonth = styled.div`
+	flex: 12;
+	text-align: center;
+`;
+
+const NextMonth = styled.div`
+	flex: 1;
+	text-align: right;
+    margin-right: 1rem;
+    cursor: pointer;
+`;
