@@ -2,10 +2,10 @@ import { useState } from 'react';
 import moment from 'moment';
 import styled from 'styled-components';
 
-import Calendar from '../components/Calendar';
-import WorkoutData from '../components/WorkoutData';
+import Calendar from './Calendar/index';
+import WorkoutData from './WorkoutData/index';
 
-export default function CalendarContainer({ firebase, authUser }) {
+export default function CalendarAndWorkoutData({ firebase, authUser }) {
     const [date, setDate] = useState(moment());
     
     return (

@@ -12,7 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 
 import useStyles from '../config/theme.signinup';
-import Copyright from '../components/Copyright';
+import Copyright from '../components/Copyright/index';
 import { withFirebase } from '../components/Firebase';
 
 function SignUp({ firebase, history }) {

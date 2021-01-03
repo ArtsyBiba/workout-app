@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 
-import UserData from '../components/UserData';
+import UserData from './UserData';
 
 export default function UserProfile ({ setOpen, open }) {
     const handleClose = () => {

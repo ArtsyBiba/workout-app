@@ -10,7 +10,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 import Snackbar from '@material-ui/core/Snackbar';
-import { withFirebase } from './Firebase';
+import { withFirebase } from '../Firebase';
 
 function PasswordForget({ firebase }) {
   const [open, setOpen] = useState(false);
@@ -58,24 +58,24 @@ function PasswordForget({ firebase }) {
                 To reset your password, please enter your email address here. We will you instructions on how to reset your password shortly after.
                 </DialogContentText>
                 <TextField
-                autoFocus
-                margin='dense'
-                id='name'
-                label='Email Address'
-                type='email'
-                name='email'
-                value={state.email}
-                onChange={handleChange}
-                fullWidth
+                  autoFocus
+                  margin='dense'
+                  id='name'
+                  label='Email Address'
+                  type='email'
+                  name='email'
+                  value={state.email}
+                  onChange={handleChange}
+                  fullWidth
                 />
                 {state.error && <p style={{color:'red'}}>{state.error.message}</p>}
             </DialogContent>
             <DialogActions>
                 <Button onClick={handleClose} color='primary'>
-                Cancel
+                  Cancel
                 </Button>
                 <Button onClick={handleSubmit} disabled={isInvalid} type='submit' color='primary'>
-                Reset password
+                  Reset password
                 </Button>
           </DialogActions>
         </Dialog>

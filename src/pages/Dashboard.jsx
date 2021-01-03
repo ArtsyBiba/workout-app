@@ -8,14 +8,14 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 
-import Icon from '../components/Icon';
-import Copyright from '../components/Copyright';
-import User from '../components/User';
-import SignOut from '../components/SignOut';
-import UserProfile from '../components/UserProfile';
+import Icon from '../components/Toolbar/Icon';
+import SignOut from '../components/Toolbar/SignOut';
+import Copyright from '../components/Copyright/index';
+import User from '../components/Toolbar/User';
+import UserProfile from '../components/UserProfile/index';
 import WorkoutStatsBoard from '../components/WorkoutStatsBoard';
 import { AuthUserContext, withAuthentication } from '../components/Session';
-import CalendarContainer from '../components/CalendarContainer';
+import CalendarAndWorkoutData from '../components/CalendarAndWorkoutData/index';
 
 function Dashboard({ firebase, history }) {
     const [open, setOpen] = useState(false);
@@ -62,7 +62,7 @@ function Dashboard({ firebase, history }) {
                     </AppBar>
 
                     <SyledDashboard>
-                        <CalendarContainer 
+                        <CalendarAndWorkoutData 
                             firebase={firebase} 
                             authUser={authUser}
                         />
