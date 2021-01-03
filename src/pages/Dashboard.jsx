@@ -75,13 +75,15 @@ function Dashboard({ firebase, history }) {
                     </SyledDashboard>
                     <UserProfile open={open} setOpen={setOpen} />
                 </StyledPage>) : (
-                    <LoaderSpinner
-                    type='ThreeDots' 
-                    color='black' 
-                    height={50} 
-                    width={50} 
-                    data-testid='loader-spinner'
-                    />
+                    <StyledPage>
+                        <LoaderSpinner
+                        type='ThreeDots' 
+                        color='black' 
+                        height={50} 
+                        width={50} 
+                        data-testid='loader-spinner'
+                        />
+                    </StyledPage>
                 )
             }
         </AuthUserContext.Consumer>
@@ -98,7 +100,7 @@ const SyledDashboard = styled.div`
 `;
 
 const StyledPage = styled.div`
-    display: 'flex';
+    display: flex;
     background-color: #f5f3ed;
 `;
 
