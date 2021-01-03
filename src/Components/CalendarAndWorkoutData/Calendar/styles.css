@@ -45,6 +45,7 @@
 	box-sizing: border-box;
 	z-index: 1;
 	text-align: center;
+	cursor: pointer;
 }
 
 .calendar .day div {
