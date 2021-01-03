@@ -1,6 +1,7 @@
 import { withRouter } from 'react-router-dom';
 import { useState } from 'react';
 import styled from 'styled-components';
+import LoaderSpinner from '../components/Animation/LoaderSpinner';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -73,7 +74,15 @@ function Dashboard({ firebase, history }) {
                         <Copyright />
                     </SyledDashboard>
                     <UserProfile open={open} setOpen={setOpen} />
-                </StyledPage>) : (<p>Not authorized.</p>)
+                </StyledPage>) : (
+                    <LoaderSpinner
+                    type='ThreeDots' 
+                    color='black' 
+                    height={50} 
+                    width={50} 
+                    data-testid='loader-spinner'
+                    />
+                )
             }
         </AuthUserContext.Consumer>
     );
