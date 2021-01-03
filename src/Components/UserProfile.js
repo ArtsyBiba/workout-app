@@ -1,5 +1,6 @@
 import { forwardRef } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import styled from 'styled-components';
+
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import AppBar from '@material-ui/core/AppBar';
@@ -12,42 +13,41 @@ import Slide from '@material-ui/core/Slide';
 import UserData from '../components/UserData';
 
 export default function UserProfile ({ setOpen, open }) {
-    const classes = useStyles();
-
     const handleClose = () => {
         setOpen(false);
     };    
 
     return (
         <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
-            <AppBar className={classes.appBar}>
+            <StyledAppBar>
             <Toolbar>
                 <IconButton edge='start' color='inherit' onClick={handleClose} aria-label='close'>
                     <CloseIcon />
                 </IconButton>
-                <Typography variant='h6' className={classes.title}>
+                <Title>
                     User Profile
-                </Typography>
+                </Title>
                 <Button autoFocus color='inherit' onClick={handleClose}>
                     save changes
                 </Button>
             </Toolbar>
-            </AppBar>
+            </StyledAppBar>
             <UserData />
         </Dialog>
     )
 };
 
-const useStyles = makeStyles((theme) => ({
-    appBar: {
-      position: 'relative',
-    },
-    title: {
-      marginLeft: theme.spacing(2),
-      flex: 1,
-    },
-}));
-
 const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction='up' ref={ref} {...props} />;
 });
+
+const Title = styled(Typography)`
+    font-size: 1.2em;
+    font-weight: 600;
+    flex: 1;
+    margin-left: 1em;
+`;
+
+const StyledAppBar = styled(AppBar)`
+    position: relative;
+`;
