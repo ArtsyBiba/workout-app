@@ -8,7 +8,6 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 
-import useStyles from '../config/theme.dashboard';
 import Icon from '../components/Icon';
 import Copyright from '../components/Copyright';
 import User from '../components/User';
@@ -19,7 +18,6 @@ import { AuthUserContext, withAuthentication } from '../components/Session';
 import CalendarContainer from '../components/CalendarContainer';
 
 function Dashboard({ firebase, history }) {
-    const classes = useStyles();
     const [open, setOpen] = useState(false);
 
     const signOut = () => {
@@ -44,7 +42,6 @@ function Dashboard({ firebase, history }) {
                                     variant='h6' 
                                     color='inherit' 
                                     noWrap 
-                                    className={classes.title}
                                 >
                                     Workout Tracker
                                 </Typography>
