@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-
-import './styles.css';
 import TextField from '@material-ui/core/TextField';
 import Button from './Button';
 import Select from '@material-ui/core/Select';
