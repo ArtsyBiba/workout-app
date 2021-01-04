@@ -1,34 +1,39 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import { useFormik } from 'formik';
 
 import TextField from '@material-ui/core/TextField';
 
 export default function UserInput() {
-    const defaultProfile = {
-        name: '',
-        age: '',
-        height: 0,
-        currentWeight: 150,
-        targetWeight: 150,
-    };
-
-    const [userProfile, setUserProfile] = useState(defaultProfile);
-
-    console.log(userProfile)
+    const formik = useFormik({
+        initialValues: {
+            name: '',
+            age: '',
+            height: '',
+            currentWeight: '',
+            targetWeight: '',
+        },
+        onSubmit: values => {
+            alert(JSON.stringify(values, null, 2));
+        },
+    });
 
     return (
-        <UserInputWrapper>
+        <UserInputForm onSubmit={formik.handleSubmit}>
+            <label htmlFor='name'>Full Name</label>
             <UserInputLine>
                 <StyledTextField 
-                    label='Full Name'
-                    value={userProfile.name}
-                    onChange={(e) => setUserProfile({...userProfile, name: e.target.value})} 
+                    id='lastName'
+                    name='lastName'
+                    type='text'
+                    onChange={formik.name}
+                    value={formik.values.name}
                 />
-                {userProfile && <SavedData>{userProfile.name}</SavedData>}
+                {formik.values && <SavedData>{formik.values.name}</SavedData>}
             </UserInputLine>
-            <UserInputLine>
+            {/* <UserInputLine>
                 <StyledTextField 
-                    label='Age'
+                    label='Age (y.o)'
                     value={userProfile.age}
                     onChange={(e) => setUserProfile({...userProfile, age: e.target.value})} 
                 />
@@ -44,7 +49,7 @@ export default function UserInput() {
             </UserInputLine>
             <UserInputLine>
                 <StyledTextField 
-                    label='Current Weight'
+                    label='Current Weight (lbs)'
                     value={userProfile.currentWeight}
                     onChange={(e) => setUserProfile({...userProfile, currentWeight: e.target.value})} 
                 />
@@ -52,13 +57,13 @@ export default function UserInput() {
             </UserInputLine>
             <UserInputLine>
                 <StyledTextField 
-                    label='Target Weight'
+                    label='Target Weight (lbs)'
                     value={userProfile.targetWeight}
                     onChange={(e) => setUserProfile({...userProfile, targetWeight: e.target.value})} 
                 />
                 {userProfile && <SavedData>{userProfile.targetWeight} lbs</SavedData>}
-            </UserInputLine>
-        </UserInputWrapper>
+            </UserInputLine> */}
+        </UserInputForm>
     )
 };
 
@@ -66,11 +71,10 @@ const StyledTextField = styled(TextField)`
     width: 45%;
     text-align: center;
     font-size: 0.5em;
-    margin-left: 15px;
     flex: 7;
 `;
 
-const UserInputWrapper = styled.div`
+const UserInputForm = styled.form`
     display: flex;
     flex-direction: column;
     width: 60%;
