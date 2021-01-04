@@ -20,55 +20,66 @@ export default function UserInput() {
 
     return (
         <UserInputForm onSubmit={formik.handleSubmit}>
-            <label htmlFor='name'>Full Name</label>
             <UserInputLine>
                 <StyledTextField 
-                    id='lastName'
-                    name='lastName'
+                    label='Full Name'
+                    id='name'
+                    name='name'
                     type='text'
-                    onChange={formik.name}
+                    onChange={formik.handleChange}
                     value={formik.values.name}
                 />
                 {formik.values && <SavedData>{formik.values.name}</SavedData>}
             </UserInputLine>
-            {/* <UserInputLine>
+            <UserInputLine>
                 <StyledTextField 
                     label='Age (y.o)'
-                    value={userProfile.age}
-                    onChange={(e) => setUserProfile({...userProfile, age: e.target.value})} 
+                    id='age'
+                    name='age'
+                    type='text'
+                    onChange={formik.handleChange}
+                    value={formik.values.age}
                 />
-                {userProfile && <SavedData>{userProfile.age}</SavedData>}
+                {formik.values && <SavedData>{formik.values.age}</SavedData>}
             </UserInputLine>
             <UserInputLine>
                 <StyledTextField 
                     label='Height'
-                    value={userProfile.height}
-                    onChange={(e) => setUserProfile({...userProfile, height: e.target.value})} 
+                    id='height'
+                    name='height'
+                    type='text'
+                    onChange={formik.handleChange}
+                    value={formik.values.height}
                 />
-                {userProfile && <SavedData>{userProfile.height}</SavedData>}
+                {formik.values && <SavedData>{formik.values.height}</SavedData>}
             </UserInputLine>
             <UserInputLine>
                 <StyledTextField 
                     label='Current Weight (lbs)'
-                    value={userProfile.currentWeight}
-                    onChange={(e) => setUserProfile({...userProfile, currentWeight: e.target.value})} 
+                    id='currentWeight'
+                    name='currentWeight'
+                    type='text'
+                    onChange={formik.handleChange}
+                    value={formik.values.currentWeight}
                 />
-                {userProfile && <SavedData>{userProfile.currentWeight} lbs</SavedData>}
+                {formik.values && <SavedData>{formik.values.currentWeight}</SavedData>}
             </UserInputLine>
             <UserInputLine>
                 <StyledTextField 
                     label='Target Weight (lbs)'
-                    value={userProfile.targetWeight}
-                    onChange={(e) => setUserProfile({...userProfile, targetWeight: e.target.value})} 
+                    id='targetWeight'
+                    name='targetWeight'
+                    type='text'
+                    onChange={formik.handleChange}
+                    value={formik.values.targetWeight}
                 />
-                {userProfile && <SavedData>{userProfile.targetWeight} lbs</SavedData>}
-            </UserInputLine> */}
+                {formik.values && <SavedData>{formik.values.targetWeight}</SavedData>}
+            </UserInputLine>
         </UserInputForm>
     )
 };
 
 const StyledTextField = styled(TextField)`
-    width: 45%;
     text-align: center;
     font-size: 0.5em;
     flex: 7;
