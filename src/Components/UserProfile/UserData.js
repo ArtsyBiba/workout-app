@@ -20,7 +20,7 @@ export default function UserInput() {
                     value={userProfile.activity}
                     onChange={(e) => setUserProfile({...userProfile, activity: e.target.value})} 
                 />
-                {userProfile && <SavedWorkout>{userProfile.activity}</SavedWorkout>}
+                {userProfile && <SavedData>{userProfile.activity}</SavedData>}
             </UserInputLine>
             <UserInputLine>
                 <StyledTextField 
@@ -28,15 +28,15 @@ export default function UserInput() {
                     value={userProfile.duration}
                     onChange={(e) => setUserProfile({...userProfile, duration: e.target.value})} 
                 />
-                {userProfile && <SavedWorkout>{userProfile.duration}</SavedWorkout>}
+                {userProfile && <SavedData>{userProfile.duration}</SavedData>}
             </UserInputLine>
             <UserInputLine>
                 <StyledTextField 
-                    label='Duration (min)'
+                    label='Workout Goals'
                     value={userProfile.duration}
                     onChange={(e) => setUserProfile({...userProfile, duration: e.target.value})} 
                 />
-                {userProfile && <SavedWorkout>{userProfile.intensity}</SavedWorkout>}
+                {userProfile && <SavedData>{userProfile.intensity}</SavedData>}
             </UserInputLine>
         </UserInputWrapper>
     )
@@ -47,22 +47,26 @@ const StyledTextField = styled(TextField)`
     text-align: center;
     font-size: 0.5em;
     margin-left: 15px;
+    flex: 7;
 `;
 
 const UserInputWrapper = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	height: 200px;
-	margin-top: 0.5em;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    justify-content: space-between;
+    margin: auto;
+	margin-top: 1.5em;
 `;
 
 const UserInputLine = styled.div`
     display: flex;
 `;
 
-const SavedWorkout = styled.div`
+const SavedData = styled.div`
     margin: auto;
 	color: grey;
-	padding-top: 10px;
+    padding-top: 10px;
+    flex: 3;
+    text-align: center;
 `;
