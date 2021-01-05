@@ -1,7 +1,6 @@
 import { forwardRef } from 'react';
 import styled from 'styled-components';
 
-import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -37,9 +36,6 @@ export default function UserProfile ({ setOpen, open, firebase, authUser }) {
                 <Title>
                     User Profile
                 </Title>
-                <Button autoFocus color='inherit' onClick={handleClose}>
-                    save changes
-                </Button>
             </Toolbar>
             </StyledAppBar>
             <UserData firebase={firebase} authUser={authUser} />
