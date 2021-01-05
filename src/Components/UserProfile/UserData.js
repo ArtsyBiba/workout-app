@@ -9,22 +9,28 @@ export default function UserInput() {
     const validate = values => {
         const errors = {};
         if (!values.name) {
-            errors.name = 'Required';
+            errors.name = 'Please enter your name';
         } else if (values.name.length > 15) {
             errors.name = 'Must be 15 characters or less';
         }
       
-        // if (!values.lastName) {
-        //     errors.lastName = 'Required';
-        // } else if (values.lastName.length > 20) {
-        //     errors.lastName = 'Must be 20 characters or less';
-        // }
+        if (!values.age) {
+            errors.age = 'Please enter your age';
+        } else if (values.age < 1) {
+            errors.age = 'Enter a valid age';
+        }
       
-        // if (!values.email) {
-        //     errors.email = 'Required';
-        // } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-        //     errors.email = 'Invalid email address';
-        // }
+        if (!values.currentWeight) {
+            errors.currentWeight = 'Please enter your current weight';
+        } else if (values.currentWeight < 1) {
+            errors.currentWeight = 'Enter a valid weight';
+        }
+
+        if (!values.targetWeight) {
+            errors.targetWeight = 'Please enter your target weight';
+        } else if (values.targetWeight < 1) {
+            errors.targetWeight = 'Enter a valid weight';
+        }
       
         return errors;
       };
@@ -33,7 +39,6 @@ export default function UserInput() {
         initialValues: {
             name: '',
             age: '',
-            height: '',
             currentWeight: '',
             targetWeight: '',
         },
@@ -70,45 +75,37 @@ export default function UserInput() {
                     label='Age (y.o)'
                     id='age'
                     name='age'
-                    type='text'
+                    type='number'
                     onChange={formik.handleChange}
                     value={formik.values.age}
                 />
                 {formik.values && <SavedData>{formik.values.age}</SavedData>}
             </UserInputLine>
-            <UserInputLine>
-                <StyledTextField 
-                    label='Height'
-                    id='height'
-                    name='height'
-                    type='text'
-                    onChange={formik.handleChange}
-                    value={formik.values.height}
-                />
-                {formik.values && <SavedData>{formik.values.height}</SavedData>}
-            </UserInputLine>
+            {formik.errors.age ? <Error>{formik.errors.age}</Error> : null}
             <UserInputLine>
                 <StyledTextField 
                     label='Current Weight (lbs)'
                     id='currentWeight'
                     name='currentWeight'
-                    type='text'
+                    type='number'
                     onChange={formik.handleChange}
                     value={formik.values.currentWeight}
                 />
                 {formik.values && <SavedData>{formik.values.currentWeight}</SavedData>}
             </UserInputLine>
+            {formik.errors.currentWeight ? <Error>{formik.errors.currentWeight}</Error> : null}
             <UserInputLine>
                 <StyledTextField 
                     label='Target Weight (lbs)'
                     id='targetWeight'
                     name='targetWeight'
-                    type='text'
+                    type='number'
                     onChange={formik.handleChange}
                     value={formik.values.targetWeight}
                 />
                 {formik.values && <SavedData>{formik.values.targetWeight}</SavedData>}
             </UserInputLine>
+            {formik.errors.targetWeight ? <Error>{formik.errors.targetWeight}</Error> : null}
             <StyledButton onClick={handleSubmit}>Update Profile</StyledButton>
         </UserInputForm>
     )
