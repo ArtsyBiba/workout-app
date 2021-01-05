@@ -6,6 +6,29 @@ import TextField from '@material-ui/core/TextField';
 import Button from '../CalendarAndWorkoutData/WorkoutData/Button';
 
 export default function UserInput() {
+    const validate = values => {
+        const errors = {};
+        if (!values.name) {
+            errors.name = 'Required';
+        } else if (values.name.length > 15) {
+            errors.name = 'Must be 15 characters or less';
+        }
+      
+        // if (!values.lastName) {
+        //     errors.lastName = 'Required';
+        // } else if (values.lastName.length > 20) {
+        //     errors.lastName = 'Must be 20 characters or less';
+        // }
+      
+        // if (!values.email) {
+        //     errors.email = 'Required';
+        // } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+        //     errors.email = 'Invalid email address';
+        // }
+      
+        return errors;
+      };
+    
     const formik = useFormik({
         initialValues: {
             name: '',
@@ -14,6 +37,7 @@ export default function UserInput() {
             currentWeight: '',
             targetWeight: '',
         },
+        validate,
         onSubmit: values => {
             alert(JSON.stringify(values, null, 2));
         },
@@ -31,7 +55,7 @@ export default function UserInput() {
         <UserInputForm onSubmit={formik.handleSubmit}>
             <UserInputLine>
                 <StyledTextField 
-                    label='Full Name'
+                    label='Name'
                     id='name'
                     name='name'
                     type='text'
@@ -40,6 +64,7 @@ export default function UserInput() {
                 />
                 {formik.values && <SavedData>{formik.values.name}</SavedData>}
             </UserInputLine>
+            {formik.errors.name ? <Error>{formik.errors.name}</Error> : null}
             <UserInputLine>
                 <StyledTextField 
                     label='Age (y.o)'
@@ -120,4 +145,9 @@ const StyledButton = styled(Button)`
     width: 30%;
     margin-left: 0;
     margin-top: 2em;
+`;
+
+const Error = styled.div`
+    color: red;
+    font-size: 0.8em
 `;
