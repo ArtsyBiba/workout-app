@@ -12,16 +12,26 @@ import Slide from '@material-ui/core/Slide';
 
 import UserData from './UserData';
 
-export default function UserProfile ({ setOpen, open }) {
+export default function UserProfile ({ setOpen, open, firebase, authUser }) {
     const handleClose = () => {
         setOpen(false);
     };    
 
     return (
-        <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
+        <Dialog 
+            fullScreen 
+            open={open} 
+            onClose={handleClose} 
+            TransitionComponent={Transition}
+        >
             <StyledAppBar>
             <Toolbar>
-                <IconButton edge='start' color='inherit' onClick={handleClose} aria-label='close'>
+                <IconButton 
+                    edge='start' 
+                    color='inherit' 
+                    onClick={handleClose} 
+                    aria-label='close'
+                >
                     <CloseIcon />
                 </IconButton>
                 <Title>
@@ -32,7 +42,7 @@ export default function UserProfile ({ setOpen, open }) {
                 </Button>
             </Toolbar>
             </StyledAppBar>
-            <UserData />
+            <UserData firebase={firebase} authUser={authUser} />
         </Dialog>
     )
 };

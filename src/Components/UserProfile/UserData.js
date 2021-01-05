@@ -6,7 +6,7 @@ import { validate } from './validation';
 import TextField from '@material-ui/core/TextField';
 import Button from '../CalendarAndWorkoutData/WorkoutData/Button';
 
-export default function UserInput() {
+export default function UserInput({ firebase, authUser }) {  
     const formik = useFormik({
         initialValues: {
             name: '',
@@ -21,11 +21,9 @@ export default function UserInput() {
     });
 
     const handleSubmit = () => {
-        // if (authUser) {
-        //     newWorkout.date = selectedDate;
-        //     firebase.addWorkout(authUser.uid, newWorkout);
-        //     setNewWorkout(defaultWorkout);
-        // }
+        if (authUser) {
+            firebase.updateUserProfile(authUser.uid, formik.values);
+        }
     };
 
     return (
@@ -78,7 +76,12 @@ export default function UserInput() {
                 {formik.values && <SavedData>{formik.values.targetWeight}</SavedData>}
             </UserInputLine>
             {formik.errors.targetWeight ? <Error>{formik.errors.targetWeight}</Error> : null}
-            <StyledButton onClick={handleSubmit}>Update Profile</StyledButton>
+            <StyledButton 
+                onClick={handleSubmit}
+                type='submit'
+            >
+                Update Profile
+            </StyledButton>
         </UserInputForm>
     )
 };

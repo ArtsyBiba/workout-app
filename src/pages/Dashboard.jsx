@@ -73,7 +73,12 @@ function Dashboard({ firebase, history }) {
                         />
                         <Copyright />
                     </SyledDashboard>
-                    <UserProfile open={open} setOpen={setOpen} />
+                    <UserProfile 
+                        open={open} 
+                        setOpen={setOpen} 
+                        firebase={firebase} 
+                        authUser={authUser}
+                    />
                 </StyledPage>) : (
                     <StyledPage>
                         <LoaderSpinner
