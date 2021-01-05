@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useFormik } from 'formik';
 
 import TextField from '@material-ui/core/TextField';
+import Button from '../CalendarAndWorkoutData/WorkoutData/Button';
 
 export default function UserInput() {
     const formik = useFormik({
@@ -17,6 +18,14 @@ export default function UserInput() {
             alert(JSON.stringify(values, null, 2));
         },
     });
+
+    const handleSubmit = () => {
+        // if (authUser) {
+        //     newWorkout.date = selectedDate;
+        //     firebase.addWorkout(authUser.uid, newWorkout);
+        //     setNewWorkout(defaultWorkout);
+        // }
+    };
 
     return (
         <UserInputForm onSubmit={formik.handleSubmit}>
@@ -75,6 +84,7 @@ export default function UserInput() {
                 />
                 {formik.values && <SavedData>{formik.values.targetWeight}</SavedData>}
             </UserInputLine>
+            <StyledButton onClick={handleSubmit}>Update Profile</StyledButton>
         </UserInputForm>
     )
 };
@@ -104,4 +114,10 @@ const SavedData = styled.div`
     padding-top: 10px;
     flex: 3;
     text-align: center;
+`;
+
+const StyledButton = styled(Button)`
+    width: 30%;
+    margin-left: 0;
+    margin-top: 2em;
 `;
