@@ -33,48 +33,64 @@ export default function UserInput({ firebase, authUser }) {
                     id='name'
                     name='name'
                     type='text'
+                    onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
                     value={formik.values.name}
                 />
                 {formik.values && <SavedData>{formik.values.name}</SavedData>}
             </UserInputLine>
-            {formik.errors.name ? <Error>{formik.errors.name}</Error> : null}
+            {formik.touched.name && formik.errors.name 
+                ? <Error>{formik.errors.name}</Error> 
+                : null
+            }
             <UserInputLine>
                 <StyledTextField 
                     label='Age (y.o)'
                     id='age'
                     name='age'
                     type='number'
+                    onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
                     value={formik.values.age}
                 />
                 {formik.values && <SavedData>{formik.values.age}</SavedData>}
             </UserInputLine>
-            {formik.errors.age ? <Error>{formik.errors.age}</Error> : null}
+            {formik.touched.age && formik.errors.age 
+                ? <Error>{formik.errors.age}</Error> 
+                : null
+            }
             <UserInputLine>
                 <StyledTextField 
                     label='Current Weight (lbs)'
                     id='currentWeight'
                     name='currentWeight'
                     type='number'
+                    onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
                     value={formik.values.currentWeight}
                 />
                 {formik.values && <SavedData>{formik.values.currentWeight}</SavedData>}
             </UserInputLine>
-            {formik.errors.currentWeight ? <Error>{formik.errors.currentWeight}</Error> : null}
+            {formik.touched.currentWeight && formik.errors.currentWeight 
+                ? <Error>{formik.errors.currentWeight}</Error> 
+                : null
+            }
             <UserInputLine>
                 <StyledTextField 
                     label='Target Weight (lbs)'
                     id='targetWeight'
                     name='targetWeight'
                     type='number'
+                    onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
                     value={formik.values.targetWeight}
                 />
                 {formik.values && <SavedData>{formik.values.targetWeight}</SavedData>}
             </UserInputLine>
-            {formik.errors.targetWeight ? <Error>{formik.errors.targetWeight}</Error> : null}
+            {formik.touched.targetWeight && formik.errors.targetWeight 
+                ? <Error>{formik.errors.targetWeight}</Error> 
+                : null
+            }
             <StyledButton 
                 onClick={handleSubmit}
                 type='submit'
