@@ -2,9 +2,10 @@
 
 Built with: ReactJS, React Hooks, Firebase, Material UI, styled-components
 
-Functionality: 
--> User authentication with Firebase 
--> Form validation for Login and Register forms 
--> Live database using Firebase Realtime DB
--> GitHub style activity heatmap (based on workout intensity)
--> Styling with Material UI & styled-components
+##Functionality: 
+- User authentication with Firebase 
+- Form validation for Login and Register forms 
+- Live database using Firebase Realtime DB
+- GitHub style activity heatmap (based on workout intensity)
+- Styling with Material UI & styled-components
+- Custom form integration using Formik
