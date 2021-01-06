@@ -61,4 +61,7 @@
 	.workout-stats .body {
 		font-size: 0.8em;
 	}
+	.workout-stats {
+		margin-top: 0;
+	}
 }

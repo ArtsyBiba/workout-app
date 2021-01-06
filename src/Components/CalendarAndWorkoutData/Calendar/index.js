@@ -66,7 +66,7 @@ export default function Calendar({ date, setDate, firebase, authUser }) {
 const CalendarWrapper = styled.div`
 	box-sizing: border-box;
 	font-size: 1rem;
-	max-width: 400px;
+	max-width: 378px;
 	height: 300px;
 	margin-top: 1em;
 `;

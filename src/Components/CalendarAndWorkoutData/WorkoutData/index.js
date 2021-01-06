@@ -55,7 +55,7 @@ export default function WorkoutData({ firebase, authUser, date }) {
 const WorkoutDataWrapper = styled.div`
     box-sizing: border-box;
 	font-size: 1rem;
-	width: 400px;
+	width: 378px;
 	height: 324px;
     margin-top: 1em;
 
