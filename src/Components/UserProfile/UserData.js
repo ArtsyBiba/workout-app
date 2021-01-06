@@ -110,7 +110,7 @@ const StyledTextField = styled(TextField)`
 const UserInputForm = styled.form`
     display: flex;
     flex-direction: column;
-    width: 60%;
+    width: 45%;
     justify-content: space-between;
     margin: auto;
 	margin-top: 1.5em;
@@ -129,7 +129,7 @@ const SavedData = styled.div`
 `;
 
 const StyledButton = styled(Button)`
-    width: 30%;
+    width: 50%;
     margin-left: 0;
     margin-top: 2em;
 `;
