@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useFormik } from 'formik';
 import { validate } from './validation';
@@ -6,6 +7,16 @@ import TextField from '@material-ui/core/TextField';
 import Button from '../CalendarAndWorkoutData/WorkoutData/Button';
 
 export default function UserInput({ firebase, authUser }) {  
+    const [savedProfile, setSavedProfile] = useState({});
+
+    useEffect(() => { 
+        const ref = firebase.db.ref(`users/${authUser.uid}/profile`);
+        ref.on('value', (snapshot) => {
+            const data = snapshot.val();
+            setSavedProfile(data);
+        });
+    }, [authUser, firebase]);
+    
     const formik = useFormik({
         initialValues: {
             name: '',
@@ -37,7 +48,7 @@ export default function UserInput({ firebase, authUser }) {
                     onChange={formik.handleChange}
                     value={formik.values.name}
                 />
-                {formik.values && <SavedData>{formik.values.name}</SavedData>}
+                {savedProfile && <SavedData>{savedProfile.name}</SavedData>}
             </UserInputLine>
             {formik.touched.name && formik.errors.name 
                 ? <Error>{formik.errors.name}</Error> 
@@ -53,7 +64,7 @@ export default function UserInput({ firebase, authUser }) {
                     onChange={formik.handleChange}
                     value={formik.values.age}
                 />
-                {formik.values && <SavedData>{formik.values.age}</SavedData>}
+                {savedProfile && <SavedData>{savedProfile.age}</SavedData>}
             </UserInputLine>
             {formik.touched.age && formik.errors.age 
                 ? <Error>{formik.errors.age}</Error> 
@@ -69,7 +80,7 @@ export default function UserInput({ firebase, authUser }) {
                     onChange={formik.handleChange}
                     value={formik.values.currentWeight}
                 />
-                {formik.values && <SavedData>{formik.values.currentWeight}</SavedData>}
+                {savedProfile && <SavedData>{savedProfile.currentWeight}</SavedData>}
             </UserInputLine>
             {formik.touched.currentWeight && formik.errors.currentWeight 
                 ? <Error>{formik.errors.currentWeight}</Error> 
@@ -85,7 +96,7 @@ export default function UserInput({ firebase, authUser }) {
                     onChange={formik.handleChange}
                     value={formik.values.targetWeight}
                 />
-                {formik.values && <SavedData>{formik.values.targetWeight}</SavedData>}
+                {savedProfile && <SavedData>{savedProfile.targetWeight}</SavedData>}
             </UserInputLine>
             {formik.touched.targetWeight && formik.errors.targetWeight 
                 ? <Error>{formik.errors.targetWeight}</Error> 

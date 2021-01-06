@@ -48,8 +48,8 @@ var config = {
     };
     
     updateUserProfile = (uid, userData) => {
-        const ref = this.db.ref().child(`users/${uid}/profile`);
-        ref.push(userData);
+        const ref = this.db.ref(`users/${uid}/profile`);
+        ref.set(userData);
     };
 }
 
