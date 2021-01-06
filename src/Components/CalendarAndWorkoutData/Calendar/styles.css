@@ -1,12 +1,4 @@
-.calendar {
-	box-sizing: border-box;
-	font-size: 1rem;
-	max-width: 400px;
-	height: 300px;
-	margin-top: 1em;
-}
-
-.calendar .day-names {
+.day-names {
 	display: flex;
 	flex-wrap: wrap;
 	max-width: 1000px;
@@ -14,13 +6,7 @@
 	align-items: center;
 }
 
-.calendar .body {
-	height: 265px;
-	background-color: white;
-	margin-top: 0.5em;
-}
-
-.calendar .week {
+.week {
 	background-color: #f6f2f7;
 	width: calc(100% / 7);
 	height: 44px;
@@ -30,11 +16,8 @@
 	color: black;
 	font-weight: 400;
 }
-.calendar .week div {
-	width: 100%;
-}
 
-.calendar .day {
+.day {
 	position: relative;
 	width: calc(100% / 7);
 	height: 44px;
@@ -48,7 +31,7 @@
 	cursor: pointer;
 }
 
-.calendar .day div {
+.day div {
 	width: 54px;
 	height: 44px;
 	position: relative;
@@ -57,21 +40,21 @@
 	line-height: 44px;
 }
 
-.calendar .day div.before {
+.day div.before {
 	color: grey;
 }
 
-.calendar .day div.workout {
+.day div.workout {
 	color: #350575;
 	font-weight: bold;
 }
 
-.calendar .day div.selected {
+.day div.selected {
 	background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
 	color: white;
 	font-weight: bold;
 }
 
-.calendar .day div.today {
+.day div.today {
 	background-color: lightgrey;
 }

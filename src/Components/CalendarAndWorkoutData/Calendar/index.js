@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import styled from 'styled-components';
 
 import './styles.css';
 import buildCalendar from './build';
@@ -34,9 +35,9 @@ export default function Calendar({ date, setDate, firebase, authUser }) {
     };
 
     return (
-        <div className='calendar'>
+        <CalendarWrapper>
             <Header date={date} setDate={setDate} />
-            <div className='body'>
+            <CalendarBody>
                 <div className='day-names'>
                     {['su', 'mo', 'tu', 'we', 'th', 'fr', 'sa'].map((day, index) => (
                         <div key={index} className='week'>{day}</div>
@@ -57,7 +58,21 @@ export default function Calendar({ date, setDate, firebase, authUser }) {
                         ))}
                     </div>
                 ))}
-            </div>
-        </div>
+            </CalendarBody>
+        </CalendarWrapper>
     )
 };
+
+const CalendarWrapper = styled.div`
+	box-sizing: border-box;
+	font-size: 1rem;
+	max-width: 400px;
+	height: 300px;
+	margin-top: 1em;
+`;
+
+const CalendarBody = styled.div`
+    height: 265px;
+	background-color: white;
+	margin-top: 0.5em;
+`;
