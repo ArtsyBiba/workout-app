@@ -1,26 +1,33 @@
 import { useState, useEffect } from 'react';
-import moment from 'moment';
 import styled from 'styled-components';
+import filterData from './filter';
 
 export default function TrainingLoadTracker({ firebase, authUser }) {
-    // const [workouts, setWorkouts] = useState();
-    // const [workoutIds, setWorkoutIds] = useState([]);
-    // const [formattedWorkouts, setFormattedWorkouts] = useState();
-
-    // const today = moment();
-    // const formattedToday = today.format('YYYY-MM-DD');
+    const [twoWeeksWorkouts, setTwoWeeksWorkouts] = useState();
+    const [fourWeeksWorkouts, setFourWeeksWorkouts] = useState();
     
-    // useEffect(() => {
-    //     let workoutsList = {};
+    useEffect(() => {        
+        const ref = firebase.db.ref().child(`users/${authUser.uid}/workouts`);
+        ref.on('value', (snapshot) => {
+            let data = snapshot.val();
+            let filteredData = filterData(data, 'two-weeks');
 
-    //     for (const workout in workouts) {
-    //         let day = workouts[workout].date;
-    //         let intensity = Number(workouts[workout].intensity);
-    //         workoutsList[day] = intensity;
-    //     }    
-        
-    //     setFormattedWorkouts(workoutsList);
-    // }, [workouts]);
+            setTwoWeeksWorkouts(filteredData);
+        });
+    }, [authUser, firebase, setTwoWeeksWorkouts]);
+
+    useEffect(() => {        
+        const ref = firebase.db.ref().child(`users/${authUser.uid}/workouts`);
+        ref.on('value', (snapshot) => {
+            let data = snapshot.val();
+            let filteredData = filterData(data, 'four-weeks');
+
+            setFourWeeksWorkouts(filteredData);
+        });
+    }, [authUser, firebase, setFourWeeksWorkouts]);
+
+    console.log(twoWeeksWorkouts)
+    console.log(fourWeeksWorkouts)
 
     return (
         <WorkoutStatsWrapper>
@@ -28,7 +35,7 @@ export default function TrainingLoadTracker({ firebase, authUser }) {
             <WorkoutStatsBody>
                 <WorkoutStatsDisplay>
                     <Stats>
-                        <StatName>Total Workouts: </StatName>
+                        <StatName>Rolling Two-Week Increase:</StatName>
                         <StatData>TBD</StatData>
                     </Stats>
                 </WorkoutStatsDisplay>
@@ -62,7 +69,8 @@ const WorkoutStatsHeader = styled.div`
 
 const WorkoutStatsBody = styled.div`
 	background-color: white;
-	margin-top: 0.5em;
+    margin-top: 0.5em;
+    padding-bottom: 1em;
     border-radius: 10px;
     
     @media (max-width: 600px) {
