@@ -80,7 +80,7 @@ const WorkoutStatsWrapper = styled.div`
 	justify-content: space-evenly;
 	margin: auto;
 	margin-top: 1.5em;
-    width: 95%;
+    width: 92%;
     
     @media (max-width: 600px) {
         margin-top: 0;

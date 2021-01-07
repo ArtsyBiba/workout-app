@@ -17,6 +17,7 @@ import UserProfile from '../components/UserProfile/index';
 import WorkoutStatsBoard from '../components/WorkoutStatsBoard';
 import { AuthUserContext, withAuthentication } from '../components/Session';
 import CalendarAndWorkoutData from '../components/CalendarAndWorkoutData/index';
+import TrainingLoadTracker from '../components/TrainingLoadTracker';
 
 function Dashboard({ firebase, history }) {
     const [open, setOpen] = useState(false);
@@ -68,6 +69,10 @@ function Dashboard({ firebase, history }) {
                             authUser={authUser}
                         />
                         <WorkoutStatsBoard
+                            firebase={firebase} 
+                            authUser={authUser}
+                        />
+                        <TrainingLoadTracker
                             firebase={firebase} 
                             authUser={authUser}
                         />
