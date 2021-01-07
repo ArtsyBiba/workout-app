@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import styled from 'styled-components';
 
 import './styles.css';
 
@@ -24,9 +25,30 @@ export default function TotalMinutes({ workouts, workoutIds }) {
     }, [workouts, workoutIds]);
 
     return (
-        <div className='stats'>
-            <div className='stat-name'>Average Intensity: </div>
-            <div className='stat-data'>{averageIntensity}</div>
-        </div>
+        <Stats>
+            <StatName>Average Intensity: </StatName>
+            <StatData>{averageIntensity}</StatData>
+        </Stats>
     )
 };
+
+const Stats = styled.div`
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+`;
+
+const StatName = styled.div`
+	font-weight: 600;
+	min-height: 1.5em;
+	line-height: 1.5em;
+	text-align: center;
+	margin-right: 0.5em;
+`;
+
+const StatData = styled.div`
+	font-weight: 400;
+	min-height: 1.5em;
+	line-height: 1.5em;
+	text-align: center;
+`;
