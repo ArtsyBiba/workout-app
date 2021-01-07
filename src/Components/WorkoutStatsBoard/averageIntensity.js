@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import './styles.css';
-
 export default function TotalMinutes({ workouts, workoutIds }) {
     const [averageIntensity, setAverageIntensity] = useState(0);
     

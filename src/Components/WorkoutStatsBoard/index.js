@@ -3,7 +3,6 @@ import { default as ActivityBoard } from 'react-github-contribution-calendar';
 import moment from 'moment';
 import styled from 'styled-components';
 
-import './styles.css';
 import TotalMinutes from './TotalMinutes';
 import AverageIntensity from './AverageIntensity';
 import TimePeriod from './TimePeriod';
