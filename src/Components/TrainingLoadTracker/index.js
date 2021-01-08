@@ -30,24 +30,17 @@ export default function TrainingLoadTracker({ firebase, authUser }) {
     }, [authUser, firebase, setFourWeeksWorkouts]);
 
     useEffect(() => {  
-        if (twoWeeksWorkouts) {
-            const totalLoad = countTotalLoad(twoWeeksWorkouts);
+        if (twoWeeksWorkouts && fourWeeksWorkouts) {
+            const totalLoadTwoWeeks = countTotalLoad(twoWeeksWorkouts);
+            const totalLoadFourWeeks = countTotalLoad(fourWeeksWorkouts);
 
-            setTotalLoadTwoWeeks(totalLoad);
+            setTotalLoadTwoWeeks(totalLoadTwoWeeks);
+            setTotalLoadFourWeeks(totalLoadFourWeeks);
         };
     }, [twoWeeksWorkouts]);  
 
-    useEffect(() => {  
-        if (fourWeeksWorkouts) {
-            const totalLoad = countTotalLoad(fourWeeksWorkouts);
-
-            setTotalLoadTwoWeeks(totalLoad);
-        };
-    }, [fourWeeksWorkouts]);  
-
     console.log(totalLoadFourWeeks)
     console.log(totalLoadTwoWeeks)
-
 
     return (
         <WorkoutStatsWrapper>
