@@ -6,8 +6,7 @@ import { countTotalLoad } from './counters';
 export default function TrainingLoadTracker({ firebase, authUser }) {
     const [twoWeeksWorkouts, setTwoWeeksWorkouts] = useState();
     const [fourWeeksWorkouts, setFourWeeksWorkouts] = useState();
-    const [totalLoadTwoWeeks, setTotalLoadTwoWeeks] = useState();
-    const [totalLoadFourWeeks, setTotalLoadFourWeeks] = useState();
+    const [loadIncrease, setLoadIncrease] = useState();
     
     useEffect(() => {        
         const ref = firebase.db.ref().child(`users/${authUser.uid}/workouts`);
@@ -34,13 +33,10 @@ export default function TrainingLoadTracker({ firebase, authUser }) {
             const totalLoadTwoWeeks = countTotalLoad(twoWeeksWorkouts);
             const totalLoadFourWeeks = countTotalLoad(fourWeeksWorkouts);
 
-            setTotalLoadTwoWeeks(totalLoadTwoWeeks);
-            setTotalLoadFourWeeks(totalLoadFourWeeks);
+            const increase = (totalLoadTwoWeeks - totalLoadFourWeeks) / totalLoadFourWeeks;
+            setLoadIncrease(increase.toFixed(2));
         };
     }, [twoWeeksWorkouts]);  
-
-    console.log(totalLoadFourWeeks)
-    console.log(totalLoadTwoWeeks)
 
     return (
         <WorkoutStatsWrapper>
