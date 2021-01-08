@@ -1,4 +1,4 @@
-export const countAverageIntensity = (workouts) => {
+const countAverageIntensity = (workouts) => {
     let sum = 0;
     
     for (const workout in workouts) {
@@ -14,7 +14,7 @@ export const countAverageIntensity = (workouts) => {
     return rounded.toString();
 };
 
-export const countTotalDuration = (workouts) => {
+const countTotalDuration = (workouts) => {
     let sum = 0;
         
     for (const workout in workouts) {
@@ -24,3 +24,13 @@ export const countTotalDuration = (workouts) => {
     
     return sum;
 };
+
+export const countTotalLoad = (workouts) => {
+    const averageIntensity = countAverageIntensity(workouts);
+
+    const totalDuration = countTotalDuration(workouts); 
+
+    const load = averageIntensity * totalDuration;
+
+    return load;
+}

@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import filterData from './filter';
-import { countAverageIntensity, countTotalDuration } from './counters';
+import { countTotalLoad } from './counters';
 
 export default function TrainingLoadTracker({ firebase, authUser }) {
     const [twoWeeksWorkouts, setTwoWeeksWorkouts] = useState();
     const [fourWeeksWorkouts, setFourWeeksWorkouts] = useState();
     const [totalLoadTwoWeeks, setTotalLoadTwoWeeks] = useState();
+    const [totalLoadFourWeeks, setTotalLoadFourWeeks] = useState();
     
     useEffect(() => {        
         const ref = firebase.db.ref().child(`users/${authUser.uid}/workouts`);
@@ -30,15 +31,23 @@ export default function TrainingLoadTracker({ firebase, authUser }) {
 
     useEffect(() => {  
         if (twoWeeksWorkouts) {
-            const averageIntensity = countAverageIntensity(twoWeeksWorkouts);
+            const totalLoad = countTotalLoad(twoWeeksWorkouts);
 
-            const totalDuration = countTotalDuration(twoWeeksWorkouts); 
-
-            const load = averageIntensity * totalDuration;
-
-            setTotalLoadTwoWeeks(load);
+            setTotalLoadTwoWeeks(totalLoad);
         };
     }, [twoWeeksWorkouts]);  
+
+    useEffect(() => {  
+        if (fourWeeksWorkouts) {
+            const totalLoad = countTotalLoad(fourWeeksWorkouts);
+
+            setTotalLoadTwoWeeks(totalLoad);
+        };
+    }, [fourWeeksWorkouts]);  
+
+    console.log(totalLoadFourWeeks)
+    console.log(totalLoadTwoWeeks)
+
 
     return (
         <WorkoutStatsWrapper>
