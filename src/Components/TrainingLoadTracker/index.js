@@ -33,8 +33,8 @@ export default function TrainingLoadTracker({ firebase, authUser }) {
             const totalLoadTwoWeeks = countTotalLoad(twoWeeksWorkouts);
             const totalLoadFourWeeks = countTotalLoad(fourWeeksWorkouts);
 
-            const increase = (totalLoadTwoWeeks - totalLoadFourWeeks) / totalLoadFourWeeks;
-            setLoadIncrease(increase.toFixed(2));
+            const increase = ((totalLoadTwoWeeks - totalLoadFourWeeks) / totalLoadFourWeeks)*100;
+            setLoadIncrease(increase.toFixed(1));
         };
     }, [twoWeeksWorkouts]);  
 
@@ -45,7 +45,7 @@ export default function TrainingLoadTracker({ firebase, authUser }) {
                 <WorkoutStatsDisplay>
                     <Stats>
                         <StatName>Rolling Two-Week Increase:</StatName>
-                        <StatData>TBD</StatData>
+                        <StatData>{loadIncrease}%</StatData>
                     </Stats>
                 </WorkoutStatsDisplay>
             </WorkoutStatsBody>
