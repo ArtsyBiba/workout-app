@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import filterData from './filter';
 import { countTotalLoad } from './counters';
 import InstructionsIcon from '../CalendarAndWorkoutData/WorkoutData/InstructionsIcon';
+import Message from './Message';
 
 export default function TrainingLoadTracker({ firebase, authUser }) {
     const [oneWeekWorkouts, setOneWeekWorkouts] = useState();
@@ -57,6 +58,7 @@ export default function TrainingLoadTracker({ firebase, authUser }) {
                         <StatData>{loadIncrease}%</StatData>
                     </Stats>
                 </WorkoutStatsDisplay>
+                <Message loadIncrease={loadIncrease} />
             </WorkoutStatsBody>
         </WorkoutStatsWrapper>
     )
@@ -122,3 +124,4 @@ const StatData = styled.div`
 	line-height: 1.5em;
 	text-align: center;
 `;
+
