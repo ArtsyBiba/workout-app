@@ -4,19 +4,19 @@ import filterData from './filter';
 import { countTotalLoad } from './counters';
 
 export default function TrainingLoadTracker({ firebase, authUser }) {
+    const [oneWeekWorkouts, setOneWeekWorkouts] = useState();
     const [twoWeeksWorkouts, setTwoWeeksWorkouts] = useState();
-    const [fourWeeksWorkouts, setFourWeeksWorkouts] = useState();
     const [loadIncrease, setLoadIncrease] = useState();
     
     useEffect(() => {        
         const ref = firebase.db.ref().child(`users/${authUser.uid}/workouts`);
         ref.on('value', (snapshot) => {
             let data = snapshot.val();
-            let filteredData = filterData(data, 'two-weeks');
+            let filteredData = filterData(data, 'one-week');
 
-            setTwoWeeksWorkouts(filteredData);
+            setOneWeekWorkouts(filteredData);
         });
-    }, [authUser, firebase, setTwoWeeksWorkouts]);
+    }, [authUser, firebase, setOneWeekWorkouts]);
 
     useEffect(() => {        
         const ref = firebase.db.ref().child(`users/${authUser.uid}/workouts`);
@@ -24,19 +24,19 @@ export default function TrainingLoadTracker({ firebase, authUser }) {
             let data = snapshot.val();
             let filteredData = filterData(data, 'four-weeks');
 
-            setFourWeeksWorkouts(filteredData);
+            setTwoWeeksWorkouts(filteredData);
         });
-    }, [authUser, firebase, setFourWeeksWorkouts]);
+    }, [authUser, firebase, setTwoWeeksWorkouts]);
 
     useEffect(() => {  
-        if (twoWeeksWorkouts && fourWeeksWorkouts) {
+        if (oneWeekWorkouts && twoWeeksWorkouts) {
+            const totalLoadOneWeek = countTotalLoad(oneWeekWorkouts);
             const totalLoadTwoWeeks = countTotalLoad(twoWeeksWorkouts);
-            const totalLoadFourWeeks = countTotalLoad(fourWeeksWorkouts);
 
-            const increase = ((totalLoadTwoWeeks - totalLoadFourWeeks) / totalLoadFourWeeks)*100;
+            const increase = ((totalLoadOneWeek - totalLoadTwoWeeks) / totalLoadTwoWeeks)*100;
             setLoadIncrease(increase.toFixed(1));
         };
-    }, [twoWeeksWorkouts, fourWeeksWorkouts]);  
+    }, [oneWeekWorkouts, twoWeeksWorkouts]);  
 
     return (
         <WorkoutStatsWrapper>
@@ -44,7 +44,7 @@ export default function TrainingLoadTracker({ firebase, authUser }) {
             <WorkoutStatsBody>
                 <WorkoutStatsDisplay>
                     <Stats>
-                        <StatName>Rolling Two-Week Increase:</StatName>
+                        <StatName>Acute Chronic Workload Ratio:</StatName>
                         <StatData>{loadIncrease}%</StatData>
                     </Stats>
                 </WorkoutStatsDisplay>

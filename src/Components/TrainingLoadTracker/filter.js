@@ -2,13 +2,13 @@ import moment from 'moment';
 
 const filterData = (data, timePeriod) => { 
     switch(timePeriod) {
-        case 'two-weeks':
+        case 'one-week':
             const startOne = moment();
-            const endOne = moment().subtract(2, 'weeks'); 
+            const endOne = moment().subtract(1, 'weeks'); 
             return updateData(startOne, endOne, data);
         case 'four-weeks':
-            const startTwo = moment().subtract(2, 'weeks');
-            const endTwo = moment().subtract(4, 'weeks');
+            const startTwo = moment().subtract(1, 'weeks');
+            const endTwo = moment().subtract(2, 'weeks');
             return updateData(startTwo, endTwo, data);
         default: return data;
     }
