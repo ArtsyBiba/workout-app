@@ -36,7 +36,7 @@ export default function TrainingLoadTracker({ firebase, authUser }) {
             const increase = ((totalLoadTwoWeeks - totalLoadFourWeeks) / totalLoadFourWeeks)*100;
             setLoadIncrease(increase.toFixed(1));
         };
-    }, [twoWeeksWorkouts]);  
+    }, [twoWeeksWorkouts, fourWeeksWorkouts]);  
 
     return (
         <WorkoutStatsWrapper>
