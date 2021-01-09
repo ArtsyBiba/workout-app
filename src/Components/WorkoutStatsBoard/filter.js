@@ -13,6 +13,9 @@ const filterData = (data, timePeriod) => {
         case 'two-weeks':
             const twoWeeksAgo = today.subtract(2, 'weeks');    
             return updateData(twoWeeksAgo, data);
+        case 'one-week':
+            const oneWeekAgo = today.subtract(1, 'weeks');    
+            return updateData(oneWeekAgo, data);
         default: return data;
     }
 };

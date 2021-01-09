@@ -30,6 +30,7 @@ export default function TimePeriod({ setWorkouts, setWorkoutIds, firebase, authU
                 <MenuItem value='year'>Last Year</MenuItem>
                 <MenuItem value='month'>Last Month</MenuItem>
                 <MenuItem value='two-weeks'>Last Two Weeks</MenuItem>
+                <MenuItem value='one-week'>Last Week</MenuItem>
             </StyledSelect>
         </Wrapper>
     )
