@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import filterData from './filter';
 import { countTotalLoad } from './counters';
+import InstructionsIcon from '../CalendarAndWorkoutData/WorkoutData/InstructionsIcon';
 
 export default function TrainingLoadTracker({ firebase, authUser }) {
     const [oneWeekWorkouts, setOneWeekWorkouts] = useState();
@@ -40,7 +41,17 @@ export default function TrainingLoadTracker({ firebase, authUser }) {
 
     return (
         <WorkoutStatsWrapper>
-            <WorkoutStatsHeader>Training Load Tracker</WorkoutStatsHeader>
+            <WorkoutStatsHeader>
+                Workout Data
+                <InstructionsIcon
+                    text='Using Acute Chronic Workload Ratio (ACWR) is a relatively simple method for 
+                    tracking training load. In terms of injury risk, an ACWR within the range of 0.8–1.3 
+                    could be considered the training ‘sweet spot’, while ACWR >1.5 typically represents 
+                    the ‘danger zone’. Therefore to reduce the risk of injury, it would be preferable to 
+                    maintain an ACWR between 0.8 and 1.3, while avoiding excessive spikes or troughs 
+                    in short-term training load.'
+                />
+            </WorkoutStatsHeader>
             <WorkoutStatsBody>
                 <WorkoutStatsDisplay>
                     <Stats>
