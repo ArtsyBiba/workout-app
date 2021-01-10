@@ -43,7 +43,7 @@ export default function TrainingLoadTracker({ firebase, authUser }) {
     return (
         <WorkoutStatsWrapper>
             <WorkoutStatsHeader>
-                Workout Data
+                Workout Load Tracker
                 <InstructionsIcon
                     text='Using Acute Chronic Workload Ratio (ACWR) is a relatively simple method for 
                     tracking training load. In terms of injury risk, an ACWR within the range of -20% to +30% 
