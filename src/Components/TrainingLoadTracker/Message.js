@@ -5,6 +5,8 @@ export default function Message ({ loadIncrease }) {
         return <StyledMessage color='red'>You're training too hard, consider a break ✋</StyledMessage>
     } else if (loadIncrease > 30  && loadIncrease < 50) {
         return <StyledMessage color='orange'>You're getting into a danger zone, use caution ☝️</StyledMessage>
+    } else if (loadIncrease < -40) {
+        return <StyledMessage color='orange'>Your total load is decreasing rapidly ☝️</StyledMessage>
     } else return <StyledMessage color='green'>You're in a Sweet Spot, keep going 👍</StyledMessage>
 }
 
