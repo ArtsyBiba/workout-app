@@ -9,8 +9,6 @@ import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 
-import UserData from './UserData';
-
 export default function Data ({ setOpen, open, firebase, authUser }) {
     const handleClose = () => {
         setOpen(false);
@@ -38,7 +36,7 @@ export default function Data ({ setOpen, open, firebase, authUser }) {
                 </Title>
             </Toolbar>
             </StyledAppBar>
-            <UserData firebase={firebase} authUser={authUser} />
+            Data
         </Dialog>
     )
 };
