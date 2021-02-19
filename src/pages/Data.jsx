@@ -11,14 +11,11 @@ import Badge from '@material-ui/core/Badge';
 
 import Icon from '../components/Toolbar/Icon';
 import SignOut from '../components/Toolbar/SignOut';
-import Copyright from '../components/Copyright/index';
+import Table from '../components/Data/Table';
 import User from '../components/Toolbar/User';
 import DataIcon from '../components/Toolbar/DataIcon';
 import UserProfile from '../components/UserProfile/index';
-import WorkoutStatsBoard from '../components/WorkoutStatsBoard';
 import { AuthUserContext, withAuthentication } from '../components/Session';
-import CalendarAndWorkoutData from '../components/CalendarAndWorkoutData/index';
-import TrainingLoadTracker from '../components/TrainingLoadTracker';
 
 function Dashboard({ firebase, history }) {
     const [open, setOpen] = useState(false);
@@ -79,19 +76,7 @@ function Dashboard({ firebase, history }) {
                     </AppBar>
 
                     <SyledDashboard>
-                        <CalendarAndWorkoutData 
-                            firebase={firebase} 
-                            authUser={authUser}
-                        />
-                        <WorkoutStatsBoard
-                            firebase={firebase} 
-                            authUser={authUser}
-                        />
-                        <TrainingLoadTracker
-                            firebase={firebase} 
-                            authUser={authUser}
-                        />
-                        <Copyright />
+                        <Table />
                     </SyledDashboard>
                     <UserProfile 
                         open={open} 

@@ -6,6 +6,7 @@ import theme from '../config/theme.config';
 import SignIn from '../pages/SignIn'; 
 import SignUp from '../pages/SignUp';
 import Dashboard from '../pages/Dashboard';
+import Data from '../pages/Data';
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
           </Route>
           <Route exact path='/dashboard'>
             <Dashboard />
+          </Route>
+          <Route exact path='/data'>
+            <Data />
           </Route>
         </Switch>
       </ThemeProvider>
