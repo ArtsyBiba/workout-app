@@ -12,10 +12,21 @@ export default function Table () {
     
     useEffect(() => {
         buildChart();
-    }, [])
+    }, []);
 
     const buildChart = () => {
         const container = d3.select('#data')
+
+        const xScale = d3
+            .scaleBand()
+            .domain(DUMMY_DATA.map(dataPoint => dataPoint.region))
+            .rangeRound([0, 250])
+            .padding(0.1);
+    
+        const yScale = d3
+            .scaleLinear()
+            .domain([0, 15])
+            .range([200, 0]);
 
         const bars = container
             .selectAll('.bar')
@@ -24,8 +35,10 @@ export default function Table () {
             .append('rect')
             .classed('bar', true)
             .attr('fill', '#521751')
-            .attr('width', 50)
-            .attr('height', data => (data.value * 15));
+            .attr('width', xScale.bandwidth())
+            .attr('height', data => 200 - yScale(data.value))
+            .attr('x', data => xScale(data.region))
+            .attr('y', data => yScale(data.value));
     }
 
     return (
@@ -35,6 +48,6 @@ export default function Table () {
 
 const Container = styled.svg`
     width: 250px;
-    height: 250px;
+    height: 200px;
     border: 1px solid black;
 `;
