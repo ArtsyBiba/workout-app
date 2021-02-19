@@ -1,5 +1,6 @@
 import * as d3 from "d3";
 import styled from 'styled-components';
+import { useEffect } from 'react';
 
 export default function Table () {
     const DUMMY_DATA = [
@@ -9,17 +10,23 @@ export default function Table () {
         { id: 'd4', value: 6, region: 'India' },
     ];
     
-    const container = d3.select('#data')
+    useEffect(() => {
+        buildChart();
+    }, [])
 
-    const bars = container
-        .selectAll('.bar')
-        .data(DUMMY_DATA)
-        .enter()
-        .append('rect')
-        .classed('bar', true)
-        .attr('fill', '#521751')
-        .attr('width', 50)
-        .attr('height', data => (data.value * 15));
+    const buildChart = () => {
+        const container = d3.select('#data')
+
+        const bars = container
+            .selectAll('.bar')
+            .data(DUMMY_DATA)
+            .enter()
+            .append('rect')
+            .classed('bar', true)
+            .attr('fill', '#521751')
+            .attr('width', 50)
+            .attr('height', data => (data.value * 15));
+    }
 
     return (
         <Container id='data'></Container>
