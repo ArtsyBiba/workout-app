@@ -13,7 +13,9 @@ import Icon from '../components/Toolbar/Icon';
 import SignOut from '../components/Toolbar/SignOut';
 import Copyright from '../components/Copyright/index';
 import User from '../components/Toolbar/User';
+import DataIcon from '../components/Toolbar/DataIcon';
 import UserProfile from '../components/UserProfile/index';
+import Data from '../components/Data/index';
 import WorkoutStatsBoard from '../components/WorkoutStatsBoard';
 import { AuthUserContext, withAuthentication } from '../components/Session';
 import CalendarAndWorkoutData from '../components/CalendarAndWorkoutData/index';
@@ -21,6 +23,7 @@ import TrainingLoadTracker from '../components/TrainingLoadTracker';
 
 function Dashboard({ firebase, history }) {
     const [open, setOpen] = useState(false);
+    const [dataOpen, setDataOpen] = useState(false);
 
     const signOut = () => {
         firebase.auth.signOut()
@@ -29,6 +32,10 @@ function Dashboard({ firebase, history }) {
 
     const handleClickOpen = () => {
         setOpen(true);
+    };
+
+    const handleClickDataOpen = () => {
+        setDataOpen(true);
     };
 
     return (
@@ -49,6 +56,11 @@ function Dashboard({ firebase, history }) {
                                 </Typography>
                             </AppName>
                             <IconsWrapper>
+                                <IconButton color='inherit' onClick={handleClickDataOpen}>
+                                    <Badge badgeContent={0} color='secondary'>
+                                        <DataIcon firebase={firebase} authUser={authUser} />
+                                    </Badge>
+                                </IconButton>
                                 <IconButton color='inherit' onClick={handleClickOpen}>
                                     <Badge badgeContent={0} color='secondary'>
                                         <User firebase={firebase} authUser={authUser} />
@@ -81,6 +93,12 @@ function Dashboard({ firebase, history }) {
                     <UserProfile 
                         open={open} 
                         setOpen={setOpen} 
+                        firebase={firebase} 
+                        authUser={authUser}
+                    />
+                    <Data 
+                        open={dataOpen} 
+                        setOpen={setDataOpen} 
                         firebase={firebase} 
                         authUser={authUser}
                     />
