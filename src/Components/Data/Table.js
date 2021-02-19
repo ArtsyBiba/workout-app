@@ -8,12 +8,18 @@ export default function Table () {
         { id: 'd4', value: 6, region: 'India' },
     ];
     
-    d3.select('#data')
-        .selectAll('p')
+    const container = d3.select('#data')
+        .style('border', '1px solid red')
+        .style('width', '250px')
+        .style('height', '250px');
+
+    const bars = container
+        .selectAll('.bar')
         .data(DUMMY_DATA)
         .enter()
-        .append('p')
-        .text(dta => dta.region);
+        .append('div')
+        .classed('bar', true)
+        .style('background-color', '#521751');
 
     return (
         <div id='data'></div>
