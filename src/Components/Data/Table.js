@@ -1,4 +1,5 @@
 import * as d3 from "d3";
+import styled from 'styled-components';
 
 export default function Table () {
     const DUMMY_DATA = [
@@ -9,19 +10,24 @@ export default function Table () {
     ];
     
     const container = d3.select('#data')
-        .style('border', '1px solid red')
-        .style('width', '250px')
-        .style('height', '250px');
 
     const bars = container
         .selectAll('.bar')
         .data(DUMMY_DATA)
         .enter()
-        .append('div')
+        .append('rect')
         .classed('bar', true)
-        .style('background-color', '#521751');
+        .attr('fill', '#521751')
+        .attr('width', 50)
+        .attr('height', data => (data.value * 15));
 
     return (
-        <div id='data'></div>
+        <Container id='data'></Container>
     )
 }
+
+const Container = styled.svg`
+    width: 250px;
+    height: 250px;
+    border: 1px solid black;
+`;
